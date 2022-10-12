@@ -1,0 +1,110 @@
+<include src="/pages/header.wxml" />
+<view hidden="{{ _ready }}">
+    <template is="page-loading" />
+</view>
+<block wx:if="{{ _ready }}">
+
+    <view class="banner-warpper">
+        <view class="banner">
+
+            <view class="left">
+                <van-image round width="120rpx" height="120rpx" fit="cover" src="{{ userInfo ? cdnurl + userInfo.avatar : '' }}" bind:click="updateAvatar" use-loading-slot lazy-load>
+                    <van-loading slot="loading" size="20" vertical />
+                </van-image>
+            </view>
+
+            <view class="mid">
+                <view class="nickname">
+                    刘军
+                    <!-- {{ userInfo.nickname ? userInfo.nickname : userInfo.username }} -->
+                </view>
+
+                <view class="group">部门：菜刀组
+                    <!-- {{ userInfo.group[0].name }} -->
+                </view>
+                <!-- <view class="join">
+                    加入时间：{{ helper.formatDate(userInfo.createtime, 'yyyy-MM-dd') }}
+                </view> -->
+            </view>
+            <view class="right">
+                <van-button open-type="feedback" type="default" size="small" round>注销</van-button>
+            </view>
+        </view>
+    </view>
+
+    <view class="container">
+        <view class="title">数据看板</view>
+        <view class="achieve">
+            <view class="order bg-abstract">
+                <view class="label">
+                    <van-icon class="icon" name="orders-o" />订单总数
+                </view>
+                <view class="count">{{ totalorder }}</view>
+            </view>
+            <view class="sale bg-abstract">
+                <view class="label">
+                    <van-icon class="icon" name="cart-o" />总销售额
+                </view>
+                <view class="money">{{ helper.formatMoney(totalprofit / 10000,false) }}万</view>
+            </view>
+            <view class="profit bg-abstract">
+                <view class="label">
+                    <van-icon class="icon" name="balance-o" />总件数
+                </view>
+                <view class="count">{{ helper.formatMoney(totalorderamount / 10000,false) }}万</view>
+            </view>
+        </view>
+    </view>
+    <view class="container">
+        <view class="title">事务处理</view>
+        <view class="todo">
+            <van-grid border="{{ false }}" clickable>
+                <van-grid-item icon="records" text="订单管理" bind:click="showorderlist" dot />
+                <van-grid-item icon="comment-o" text="印染" bind:click="showyinranlist" info="12" />
+                <van-grid-item icon="balance-list-o" bind:click="showfengzhilist" text="缝制" />
+                <van-grid-item icon="service-o" text="出库" bind:click="showchukulist" info="1" />
+            </van-grid>
+        </view>
+    </view>
+    <!-- 新的按钮组 -->
+
+
+    <view class="mytool">
+        <view class="item1">
+            <van-button type="default" icon="contact" open-type="contact" block>产品管理</van-button>
+        </view>
+        <view class="item2">
+            <van-button type="default" icon="replay" bind:tap="logout" block>订单查询</van-button>
+        </view>
+    </view>
+
+
+
+
+    <!-- <view class="container">
+        <view class="ec-order">
+            <view class="ec-order-title">近7天业绩</view>
+            <ec-canvas id="ec-order" canvas-id="canvas-ec-order" ec="{{ ecOrder }}"></ec-canvas>
+        </view>
+        <view class="title">数据总览</view>
+        <view class="global">
+            <view class="visitor">
+                <view class="label">
+                    <van-icon class="icon" name="location-o" />总访问数</view>
+                <view class="count">{{ totalviews }}</view>
+            </view>
+            <view class="order">
+                <view class="label">
+                    <van-icon class="icon" name="apps-o" />总分类数</view>
+                <view class="count">{{ totalcategory }}</view>
+            </view>
+            <view class="sale">
+                <view class="label">
+                    <van-icon class="icon" name="photo-o" />总附件数</view>
+                <view class="count">{{ totalattachment }}</view>
+            </view>
+        </view>
+    </view> -->
+</block>
+<!-- wxs -->
+<wxs src="../../utils/helper.wxs" module="helper" />

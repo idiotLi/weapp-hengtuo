@@ -1,0 +1,114 @@
+<include src="/pages/header.wxml" />
+<view hidden="{{ _ready }}">
+    <template is="page-loading" />
+</view>
+<view wx:if="{{ _ready }}" class="container">
+    <view class="info">
+        <view class="left">
+            <view class="nickname">
+                {{ userInfo.nickname ? userInfo.nickname : userInfo.username }}
+            </view>
+            <view class="email">
+                {{ userInfo.email }}
+            </view>
+        </view>
+        <view class="right">
+            <view class="avatar">
+                <van-image round width="160rpx" height="160rpx" fit="cover" src="{{ userInfo ? cdnurl + userInfo.avatar : '' }}" bind:click="updateAvatar" use-loading-slot lazy-load>
+                    <van-loading slot="loading" size="20" vertical />
+                </van-image>
+            </view>
+        </view>
+    </view>
+    <view class="banner-warpper">
+        <view class="banner">
+
+            <view class="avatar">
+                <van-image round width="120rpx" height="120rpx" fit="cover" src="{{ userInfo ? cdnurl + userInfo.avatar : '' }}" bind:click="updateAvatar" use-loading-slot lazy-load>
+                    <van-loading slot="loading" size="20" vertical />
+                </van-image>
+            </view>
+
+            <view class="left">
+                <view class="nickname">
+                {{ userInfo.nickname ? userInfo.nickname : userInfo.username }}
+                </view>
+                
+                <view class="group">
+                    {{ userInfo.group[0].name }}
+                </view>
+                <view class="join">
+                    加入时间：{{ helper.formatDate(userInfo.createtime, 'yyyy-MM-dd') }}
+                </view>
+            </view>
+            <view class="right">
+                <van-button open-type="feedback" type="default" size="small" icon="comment-o" round>问题反馈</van-button>
+            </view>
+        </view>
+    </view>
+    <view class="grid1">
+        <van-grid border="{{ false }}" column-num="{{ _hasUpdateAuth ? 4 : 1 }}" square="{{ _hasUpdateAuth }}" clickable>
+            <block wx:if="{{ _hasUpdateAuth }}" >
+                <van-grid-item icon="coupon" text="修改资料" bind:click="updateProfile" />
+                <van-grid-item icon="phone-circle" text="手机绑定" bind:click="updateMobile" dot="{{ !userInfo.mobile }}" />
+                <van-grid-item icon="wechat" text="微信绑定" data-index="bind" bind:click="updateWechat" dot="{{ !userInfo.wxUserInfo.wxopenid }}" />
+            </block>
+            <van-grid-item icon="clock" text="操作日志" url="/pages/my/log/index" />
+        </van-grid>
+    </view>
+    <!-- <view class="grid2">
+        <view class="title">其它设置</view>
+        <van-grid border="{{ false }}" square clickable>
+            <van-grid-item use-slot>
+                <van-button custom-class="btn-vertical">
+                    <view class="btn-vertical__icon">
+                        <van-icon name="upgrade"/>
+                    </view>
+                    <view class="btn-vertical__text">
+                        <text>更新</text>
+                    </view>
+                </van-button>
+            </van-grid-item>
+            <van-grid-item use-slot>
+                <van-button custom-class="btn-vertical">
+                    <view class="btn-vertical__icon">
+                        <van-icon name="question-o"/>
+                    </view>
+                    <view class="btn-vertical__text">
+                        <text>帮助</text>
+                    </view>
+                </van-button>
+            </van-grid-item>
+            <van-grid-item use-slot>
+                <van-button custom-class="btn-vertical" open-type="contact">
+                    <view class="btn-vertical__icon">
+                        <van-icon name="service-o"/>
+                    </view>
+                    <view class="btn-vertical__text">
+                        <text>客服</text>
+                    </view>
+                </van-button>
+            </van-grid-item>
+            <van-grid-item use-slot>
+                <van-button custom-class="btn-vertical">
+                    <view class="btn-vertical__icon">
+                        <van-icon name="more-o"/>
+                    </view>
+                    <view class="btn-vertical__text">
+                        <text>关于</text>
+                    </view>
+                </van-button>
+            </van-grid-item>
+        </van-grid>
+    </view> -->
+    <view class="actions">
+        <view class="contact">
+            <van-button type="default" icon="contact" open-type="contact" block>联系助手</van-button>
+        </view>
+        <view class="logout">
+            <van-button type="default" icon="replay" bind:tap="logout" block>注销登录</van-button>
+        </view>
+    </view>
+</view>
+<!-- wxs -->
+<wxs src="../../utils/helper.wxs" module="helper" />

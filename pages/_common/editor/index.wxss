@@ -1,0 +1,19 @@
+.container {
+    margin-top: 20rpx;
+}
+
+.form-actions {
+    margin: 40rpx 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+}
+
+.btn-reset {
+    margin-right: 4px;
+}
+
+.btn-submit {
+    flex: 1;
+}

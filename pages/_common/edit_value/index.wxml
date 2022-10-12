@@ -1,0 +1,107 @@
+<include src="/pages/header.wxml" />
+<view class="container">
+    <form bindsubmit="onSubmit" bindreset="onReset">
+        <view wx:if="{{ row.type === 'string' || row.type === 'custom' }}">
+            <van-field model:value="{{ value }}" name="{{ row.name }}" placeholder="{{ row.placeholder }}" border="{{ true }}" size="large" clickable clearable focus="{{ auth.edit }}" bind:change="onFieldChange" />
+        </view>
+        <view wx:if="{{ row.type === 'text' }}">
+            <van-field value="{{ value }}" name="{{ row.name }}" autosize="{{ textareaAutosize }}" placeholder="{{ row.placeholder }}" border="{{ true }}" size="large" clickable clearable focus="{{ auth.edit }}" type="textarea" bind:change="onFieldChange" />
+        </view>
+        <view wx:if="{{ row.type === 'array' }}">
+            <van-field value="{{ value }}" name="{{ row.name }}" autosize="{{ textareaAutosize }}" placeholder="{{ row.placeholder }}" border="{{ true }}" size="large" clickable clearable focus="{{ auth.edit }}" type="textarea" bind:change="onFieldChange" />
+        </view>
+        <view wx:if="{{ row.type === 'number' }}">
+            <van-field model:value="{{ value }}" name="{{ row.name }}" placeholder="{{ row.placeholder }}" border="{{ true }}" size="large" clickable clearable focus="{{ auth.edit }}" bind:change="onFieldChange" type="number" />
+        </view>
+        <view wx:if="{{ helper.inArray(row.type,['checkbox','selects']) }}">
+            <van-checkbox-group value="{{ value }}" name="{{ row.name }}" bind:change="onCheckBoxChange">
+                <van-cell-group>
+                    <van-cell wx:for="{{ row.content }}" wx:for-item="content" title="{{ content }}" value-class="flex-none" clickable data-index="{{ index }}" bind:click="toggleCheckbox">
+                        <van-checkbox catch:tap="noop" shape="square" class="checkboxes-{{ index }}" name="{{ index }}" />
+                    </van-cell>
+                </van-cell-group>
+            </van-checkbox-group>
+        </view>
+        <view wx:if="{{ row.type === 'radio' }}">
+            <van-radio-group value="{{ value }}" name="{{ row.name }}" bind:change="onRadioChange">
+                <van-cell-group>
+                    <van-cell data-name="{{ index }}" wx:for="{{ row.content }}" wx:for-item="content" title="{{ content }}" clickable bind:click="onRadioClick">
+                        <van-radio slot="right-icon" name="{{ helper.toString(index) }}" />
+                    </van-cell>
+                </van-cell-group>
+            </van-radio-group>
+        </view>
+        <view wx:if="{{ row.type === 'switch' }}">
+            <van-cell title="{{ row.title }}">
+                <van-switch name="{{ row.name }}" checked="{{ value }}" size="24px" bind:change="onSwitchChange" inactive-value="0"	active-value="1"/>
+            </van-cell>
+        </view>
+        <view wx:if="{{ helper.inArray(row.type,['select','bool']) }}">
+            <input hidden model:value="{{ value }}" name="{{ row.name }}"></input>
+            <van-field value="{{ row.content[value] }}" placeholder="{{ row.placeholder }}" border="{{ true }}" size="large" is-link arrow-direction="down" readonly focus="{{ auth.edit }}" bindtap="onTapSelectField"/>
+            <van-action-sheet show="{{ showActionSheet }}" description="请选择" close-on-click-overlay bind:close="onCloseActionSheet">
+                <van-picker class="picker" columns="{{ columns }}" show-toolbar bind:cancel="onCloseActionSheet" bind:confirm="onSelectConfirm"/>
+            </van-action-sheet>
+        </view>
+        <view wx:if="{{ row.type === 'date' }}">
+            <van-field model:value="{{ value }}" name="{{ row.name }}" placeholder="{{ row.placeholder }}" border="{{ true }}" size="large" is-link arrow-direction="down" readonly clearable focus="{{ auth.edit }}" bindtap="onTapDateField" bind:change="onFieldChange" />
+            <van-action-sheet show="{{ showActionSheet }}" description="请选择日期" close-on-click-overlay bind:close="onCloseActionSheet">
+                <van-datetime-picker class="picker" type="date" value="{{ timestamp }}" bind:confirm="onDateConfirm" bind:cancel="onCloseActionSheet" />
+            </van-action-sheet>
+        </view>
+        <view wx:if="{{ row.type === 'datetime' }}">
+            <van-field model:value="{{ value }}" name="{{ row.name }}" placeholder="{{ row.placeholder }}" border="{{ true }}" size="large" is-link arrow-direction="down" readonly clearable focus="{{ auth.edit }}" bindtap="onTapDateField" bind:change="onFieldChange" />
+            <van-action-sheet show="{{ showActionSheet }}" description="请选择日期和时间" close-on-click-overlay bind:close="onCloseActionSheet">
+                <van-datetime-picker class="picker" type="datetime" value="{{ timestamp }}" bind:confirm="onDatetimeConfirm" bind:cancel="onCloseActionSheet" />
+            </van-action-sheet>
+        </view>
+        <view wx:if="{{ row.type === 'time' }}">
+            <van-field model:value="{{ value }}" name="{{ row.name }}" placeholder="{{ row.placeholder }}" border="{{ true }}" size="large" is-link arrow-direction="down" readonly clearable focus="{{ auth.edit }}" bindtap="onTapDateField" bind:change="onFieldChange" />
+            <van-action-sheet show="{{ showActionSheet }}" description="请选择时间" close-on-click-overlay bind:close="onCloseActionSheet">
+                <van-datetime-picker class="picker" type="time" value="{{ value }}" bind:confirm="onTimeConfirm" bind:cancel="onCloseActionSheet" />
+            </van-action-sheet>
+        </view>
+        <view wx:if="{{ row.type === 'editor' }}">
+            <view class="editor-container" style="height:{{ editorHeight }}px;">
+                <editor id="editor" name="{{ row.name }}" class="ql-container van-hairline--surround" placeholder="{{ row.placeholder }}" bindstatuschange="onEditorStatusChange" bindready="onEditorReady" bindinput="onEditorInput" show-img-size show-img-toolbar show-img-resize read-only="{{ !auth.edit }}">
+                </editor>
+            </view>
+            <include src="/pages/editor_toolbar.wxml" />
+        </view>
+        <view wx:if="{{ row.type === 'file' }}" class="file-container">
+            <input hidden name="{{ row.name }}" model:value="{{ value }}"></input>
+            <van-uploader accept="file" file-list="{{ fileList }}" bind:after-read="afterRead" upload-icon="plus" max-count="1" preview-size="160px" bind:delete="onFileDelete" upload-text="点击选择微信会话文件" image-fit="aspectFit" />
+            <view class="file-mimetype text-tips">允许上传{{ maxsize }}以内的{{ mimetype }}文件</view>
+        </view>
+        <view wx:if="{{ row.type === 'files' }}" class="files-container">
+            <input hidden name="{{ row.name }}" model:value="{{ value }}"></input>
+            <van-uploader accept="file" file-list="{{ fileList }}" bind:after-read="afterRead" upload-icon="plus" bind:delete="onFileDelete" upload-text="点击选择" image-fit="aspectFit" />
+            <view class="file-mimetype text-tips">允许上传{{ maxsize }}以内的{{ mimetype }}文件</view>
+        </view>
+        <view wx:if="{{ row.type === 'image' }}" class="file-container">
+            <input hidden name="{{ row.name }}" model:value="{{ value }}"></input>
+            <van-uploader accept="image" file-list="{{ fileList }}" bind:after-read="afterRead" upload-icon="plus" max-count="1" preview-size="160px" bind:delete="onFileDelete" upload-text="点击拍照或选择" image-fit="aspectFit" />
+            <view class="file-mimetype text-tips">允许上传{{ maxsize }}以内的图片</view>
+        </view>
+        <view wx:if="{{ row.type === 'images' }}" class="files-container">
+            <input hidden name="{{ row.name }}" model:value="{{ value }}"></input>
+            <van-uploader accept="image" file-list="{{ fileList }}" bind:after-read="afterRead" upload-icon="plus" bind:delete="onFileDelete" upload-text="点击选择" image-fit="aspectFit" />
+            <view class="file-mimetype text-tips">允许上传{{ maxsize }}以内的图片</view>
+        </view>
+        <view class="edit-tips">{{ row.tip }}</view>
+        <view class="form-actions">
+            <van-button wx:if="{{ deletable && auth.del }}" class="btn-del" block type="danger" bind:click="onDelete">删除</van-button>
+            <block wx:if="{{ auth.edit }}">
+                <button type="reset" form-type="reset" class="btn-reset">重置</button>
+                <button type="primary" form-type="submit" class="btn-submit" disabled="{{ submitDisabled }}">
+                    <view hidden="{{ !submiting }}" class="flex-center">
+                        <van-loading size="20px" >提交中...</van-loading>
+                    </view>
+                    <view hidden="{{ submiting }}">确定</view>
+                </button>
+            </block>
+        </view>
+    </form>
+</view>
+<!-- wxs -->
+<wxs src="../../../utils/helper.wxs" module="helper" />

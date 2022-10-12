@@ -1,0 +1,19 @@
+<include src="/pages/header.wxml" />
+<view class="container">
+	<form id="form" class="form" bindsubmit="onSubmit" bindreset="onReset">
+		<van-cell-group>
+			<van-field label="Email" name="email" value="{{ value.email }}" placeholder="请输入" size="large" data-index="email" type="text" cursor-spacing="10" bind:change="onFieldChange" required clearable />
+			<van-field label="昵称" name="nickname" value="{{ value.nickname }}" placeholder="请输入" size="large" data-index="nickname" type="text" cursor-spacing="10" bind:change="onFieldChange" required clearable />
+			<van-field label="密码" name="password" value="{{ value.password }}" placeholder="不修改密码请留空" size="large" data-index="password" type="password" cursor-spacing="10" bind:change="onFieldChange" clearable />
+		</van-cell-group>
+		<view class="form-actions">
+			<button type="reset" form-type="reset" class="btn-reset">重置</button>
+			<button type="primary" form-type="submit" class="btn-submit" disabled="{{ _submitDisabled }}">
+				<view hidden="{{ !_submiting }}" class="flex-center">
+					<van-loading size="20px">提交中...</van-loading>
+				</view>
+				<view hidden="{{ _submiting }}">确定</view>
+			</button>
+		</view>
+	</form>
+</view>

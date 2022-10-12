@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/addons/components/helper/table-item/helper/userlog/index"
+    },
+    "navigationBarTitleText": "用户日志",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

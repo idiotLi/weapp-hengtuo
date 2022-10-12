@@ -1,0 +1,36 @@
+@import '../../../vant/common/index.wxss';
+
+.tree-collapse-item {
+    --collapse-item-content-padding: 4px 15px;
+}
+
+.tree-collapse-item-title {
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    color: var(--color-dark);
+}
+.tree-spacer {
+    position: absolute;
+    left: 0;
+}
+.tree-check-view {
+    display: inline-flex;
+    flex: 1;
+    text-align: center;
+    justify-content: space-between;
+    padding-top: 8px;
+}
+.tree-final {
+    margin:0 8px 0 2px;
+}
+.tree-check {
+    padding: 0 6px 6px 1px;
+    --checkbox-label-margin: 4px;
+}
+
+.tree-check-title {
+    padding-top: 2px;
+    padding-bottom: 0;
+    --checkbox-label-margin: 4px;
+}

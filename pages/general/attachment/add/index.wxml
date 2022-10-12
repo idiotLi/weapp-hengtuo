@@ -1,0 +1,21 @@
+<include src="/pages/header.wxml" />
+<van-collapse value="{{ activeName }}" bind:change="onCollapseChange" accordion>
+    <van-collapse-item title="上传图片或视频" name="1">
+        <view class="file-container">
+            <van-uploader accept="image" file-list="{{ fileList.image }}" bind:after-read="afterRead" upload-icon="plus" max-count="1" preview-size="160px" deletable="{{ false }}" upload-text="点击拍照或选择" data-index="image" />
+        </view>
+    </van-collapse-item>
+    <van-collapse-item title="上传会话文件" name="2">
+        <view class="file-container">
+            <van-uploader accept="file" file-list="{{ fileList.file }}" bind:after-read="afterRead" upload-icon="plus" max-count="1" preview-size="160px" deletable="{{ false }}" upload-text="点击选择微信会话文件" data-index="file" />
+        </view>
+    </van-collapse-item>
+    <van-collapse-item title="从编辑器上传" name="3">
+        <view class="editor-container" style="height:{{editorHeight}}px;">
+            <editor id="editor" name="{{row.name}}" class="ql-container van-hairline--surround" placeholder="插入一张图片试试" bindstatuschange="onEditorStatusChange" bindready="onEditorReady" bindinput="onEditorInput" show-img-size show-img-toolbar show-img-resize>
+            </editor>
+        </view>
+        <include src="/pages/editor_toolbar.wxml" />
+    </van-collapse-item>
+</van-collapse>
+<view class="file-mimetype text-tips">允许上传{{maxsize}}以内的{{mimetype}}文件</view>

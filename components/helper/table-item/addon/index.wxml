@@ -1,0 +1,42 @@
+<van-cell border="{{ false }}" custom-class="list-cell" clickable bind:click="onClickCell" data-data="{{ item }}" data-index="{{ item.id }}">
+    <view class="table-item">
+        <view class="table-item-main">
+            <view class="table-item__title">
+                <view class="name">{{ item.title }}</view>
+                <view wx:if="{{ item.local }}">
+                    <view class="status">
+                        <view class="fa {{ item.local.state === '1' ? 'fa-cog fa-spin' : 'fa-ban' }} state"></view>
+                        <view>已安装</view>
+                    </view>
+                </view>
+            </view>
+            <view class="table-item__intro">
+                {{ item.intro }}
+            </view>
+        </view>
+        <view class="table-item__image">
+            <block wx:if="{{ item.image }}">
+                <van-image width="100%" height="220px" radius="4px" src="{{ helper.isCdnurl(item.image) ? item.image : cdnurl + item.image }}" fit="cover" lazy-load use-loading-slot >
+                    <van-loading slot="loading" type="circular" size="20" vertical />
+                </van-image>
+                <view class="flag">
+                    <van-tag wx:for="{{ item.flag }}" wx:for-item="flag" type="flag-{{ flag }}" wx:key="*this" size="large" mark>{{ config.fieldContent.flag[flag] }}</van-tag>
+                </view>
+            </block>
+        </view>
+        <view class="table-item__foot">
+            <view class="table-item__author">
+                <van-icon name="contact" />
+                {{ item.author }}
+            </view>
+            <view class="table-item__price">
+                <view class="{{ item.price === '0.00' ? 'font-color-primary' : 'font-color-danger'}}">
+                    {{ item.price === '0.00' ? ' 免费' : ' ¥'+item.price }}
+                </view>
+            </view>
+        </view>
+    </view>
+</van-cell>
+<!-- wxs -->
+<wxs src="../../../vant/wxs/utils.wxs" module="utils" />
+<wxs src="../../../../utils/helper.wxs" module="helper" />

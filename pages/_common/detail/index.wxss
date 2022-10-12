@@ -1,0 +1,70 @@
+.cell-value {
+    word-break: break-all;
+}
+.h2w__main {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.cell-value .van-tag {
+    margin-right: 4px;
+}
+.cell-value__image {
+    height: 90px;
+    padding: 6px 0;
+}
+.cell-value__images {
+    padding-top: 6px;
+}
+.cell-value__images--item {
+    width: 50px;
+    height: 50px;
+    margin-left: 4px;
+}
+.file-icon-warpper {
+    display: inline-flex;
+    justify-content: center;
+    margin-left: 4px;
+    width: 50px;
+}
+.van-cell__title {
+    flex: 1;
+}
+.van-cell__value {
+    flex: 2 !important;
+    text-align: left !important;
+}
+.action-bar {
+    display: flex;
+    width: 100%;
+    height: 44px;
+    background-color: #aaa;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.action-bar button {
+    border-radius: 0;
+    border: 0;
+}
+
+.action-bar button[type=info] {
+    height: calc(env(safe-area-inset-bottom) + 44px);
+    font-size: 16px;
+}
+
+.edit {
+    flex: 1;
+}
+
+
+.button-hover[type=info]{
+    border: 0;
+}
+.container {
+    margin: 0;
+    padding-bottom: 44px;
+    padding-bottom: calc(env(safe-area-inset-bottom) + 44px);
+}

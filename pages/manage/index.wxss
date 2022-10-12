@@ -1,0 +1,33 @@
+.container {
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* 隐藏scroll-view滚动条 */
+::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+.btn-cache {
+    margin-top: 20rpx;
+}
+.grid {
+    margin: 20rpx 0;
+}
+.grid-menu {
+    text-align: center;
+}
+.grid-menu-icon {
+    color: var(--color-primary);
+}
+.grid-menu-title {
+    font-size: 14px;
+    margin-top: 20rpx;
+    word-break: keep-all;
+}
+.grid-menu-name {
+    font-size: 11px;
+    color: var(--color-lightgray)
+}

@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/components/helper/table-item/general/attachment/index"
+    },
+    "navigationBarTitleText": "附件管理",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

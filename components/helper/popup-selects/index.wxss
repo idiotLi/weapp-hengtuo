@@ -1,0 +1,79 @@
+@import '../../vant/common/index.wxss';
+
+.helper-popup-selects {
+    max-height: 90% !important;
+    max-height: var(--action-sheet-max-height, 90%) !important;
+    color: #323233;
+    color: var(--action-sheet-item-text-color, #323233)
+}
+
+.helper-popup-selects__header {
+    text-align: center;
+    font-weight: 500;
+    font-weight: var(--font-weight-bold, 500);
+    font-size: 16px;
+    font-size: var(--action-sheet-header-font-size, 16px);
+    line-height: 44px;
+    line-height: var(--action-sheet-header-height, 44px)
+}
+
+.helper-popup-selects__description {
+    text-align: center;
+    padding: 16px;
+    padding: var(--padding-md, 16px);
+    color: #646566;
+    color: var(--action-sheet-description-color, #646566);
+    font-size: 14px;
+    font-size: var(--action-sheet-description-font-size, 14px);
+    line-height: 20px;
+    line-height: var(--action-sheet-description-line-height, 20px)
+}
+
+.helper-popup-selects__close {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    line-height: inherit !important;
+    padding: 0 12px;
+    padding: var(--action-sheet-close-icon-padding, 0 12px);
+    font-size: 18px !important;
+    font-size: var(--action-sheet-close-icon-size, 18px) !important;
+    color: #969799;
+    color: var(--action-sheet-close-icon-color, #969799)
+}
+
+.helper-popup-selects__toolbar {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    height: 44px;
+    height: var(--picker-toolbar-height, 44px);
+    line-height: 44px;
+    line-height: var(--picker-toolbar-height, 44px)
+}
+
+.helper-popup-selects__cancel,
+.helper-popup-selects__confirm {
+    padding: 0 16px;
+    padding: var(--picker-action-padding, 0 16px);
+    font-size: 14px;
+    font-size: var(--picker-action-font-size, 14px);
+    color: #1989fa;
+    color: var(--picker-action-text-color, #1989fa)
+}
+
+.helper-popup-selects__cancel--hover,
+.helper-popup-selects__confirm--hover {
+    background-color: #f2f3f5;
+    background-color: var(--picker-action-active-color, #f2f3f5)
+}
+
+.helper-popup-selects__title {
+    max-width: 50%;
+    text-align: center;
+    font-weight: 500;
+    font-weight: var(--font-weight-bold, 500);
+    font-size: 16px;
+    font-size: var(--picker-option-font-size, 16px)
+}

@@ -1,0 +1,3 @@
+<include src="/pages/header.wxml" />
+<helper-table id="table" source="{{ source }}" list-class="list-class" generic:helper-table-item="helper-table-item">
+</helper-table>

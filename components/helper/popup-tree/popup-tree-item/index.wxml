@@ -1,0 +1,29 @@
+<block wx:if="{{ item.childlist.length }}">
+    <van-collapse data-index="{{ item.id }}" value="{{ active }}" bind:change="onCollapseChange" border="{{ false }}">
+        <van-collapse-item name="{{ item.id }}" border="{{ true }}" custom-class="tree-collapse-item" content-class="tree-collapse-content">
+            <view slot="title" class="tree-collapse-item-title">
+                <view class="tree-spacer">{{ item.spacer }}</view>
+                <view wx:if="{{ readOnly }}" class="tree-final">
+                    {{ item.title }}
+                </view>
+                <van-checkbox wx:else custom-class="tree-check-title" value="{{ helper.inArray(item.id,checks) }}" shape="square" data-index="{{ item.id }}" catchtap="{{ readOnly ? null : 'noop' }}" bind:change="onCheckBoxChange" read-only="{{ readOnly }}">
+                    {{ item.title }}
+                </van-checkbox>
+            </view>
+            <helper-popup-tree-item wx:for="{{ item.childlist }}" wx:key="id" item="{{ item }}" active="{{ active }}" checks="{{ checks }}" bind:treeCollapseChange="onTreeCollapseChange" bind:change="onTreeChange" read-only="{{ readOnly }}"/>
+        </van-collapse-item>
+    </van-collapse>
+</block>
+<block wx:else>
+    <view class="tree-check-view">
+        <view wx:if="{{ readOnly }}" class="tree-final">
+            {{ item.title }}
+        </view>
+        <van-checkbox wx:else custom-class="tree-check" value="{{ helper.inArray(item.id,checks) }}" shape="square" bind:change="onCheckBoxChange" data-index="{{ item.id }}" read-only="{{ readOnly }}">
+            {{ item.title }}
+        </van-checkbox>
+    </view>
+</block>
+<!-- wxs -->
+<wxs src="../../../vant/wxs/utils.wxs" module="utils" />
+<wxs src="../../../../utils/helper.wxs" module="helper" />

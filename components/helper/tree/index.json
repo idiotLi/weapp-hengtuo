@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+        "helper-tree": "../tree/index"
+    }
+}

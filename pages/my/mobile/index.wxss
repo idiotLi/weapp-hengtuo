@@ -1,0 +1,13 @@
+.form-actions {
+    margin: 40rpx 0; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-submit {
+    flex: 1;
+}
+.btn-reset {
+    flex: 1;
+    margin-right: 4px;
+}

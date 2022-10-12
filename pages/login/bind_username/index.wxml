@@ -1,0 +1,33 @@
+<include src="/pages/header.wxml" />
+<view class="container">
+    <view class="avatar">
+        <van-image round width="5rem" height="5rem" src="{{ userInfo.avatar }}" />
+    </view>
+    <view class="nickname">
+        你好，{{ userInfo.nickName }}
+    </view>
+    <view class="title">
+        <text>请验证并绑定你的账号</text>
+    </view>
+    <form bindsubmit="onSubmit">
+        <view class="helper-round-input">
+            <van-field name="username" model:value="{{username}}" maxlength="30" clearable placeholder="用户名" focus border="{{false}}" input-class="input-username" bind:change="onUsernameChange" />
+        </view>
+        <view class="helper-round-input">
+            <van-field name="password" model:value="{{password}}" maxlength="30" clearable type="password" placeholder="密码" border="{{false}}" input-class="input-password" bind:change="onPasswordChange" />
+        </view>
+        <view class="helper-round-input">
+            <van-field name="captcha" model:value="{{captcha}}" maxlength="4" type="number" value="{{captcha}}" placeholder="验证码" border="{{false}}" input-class="input-captcha" use-button-slot bind:change="onCaptchaChange">
+                <van-image width="60" height="26" slot="button" src="{{captchaUrl}}" custom-class="img-captcha" bind:click="refreshCaptcha" use-loading-slot>
+                    <van-loading slot="loading" type="circular" size="10" />
+                </van-image>
+            </van-field>
+        </view>
+        <button form-type="submit" type="primary" class="btn-submit" disabled="{{submitDisabled}}">
+            <i class="fa fa-chain fa-lg fa-fw"></i>绑定
+        </button>
+    </form>
+    <view class="href-bindmobile" bindtap="onBindMobileTap" wx:if="{{userInfo.config.isMobileBind}}">
+        忘记账号？试试手机号码验证 >
+    </view>
+</view>

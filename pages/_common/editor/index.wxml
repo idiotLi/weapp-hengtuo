@@ -1,0 +1,18 @@
+<include src="/pages/header.wxml" />
+<view class="container">
+    <form bindsubmit="onSubmit" bindreset="onReset">
+        <view class="editor-container" style="height:{{ editorHeight }}px;">
+            <editor id="editor" name="content" class="ql-container van-hairline--surround" placeholder="点击开始编辑" bindstatuschange="onEditorStatusChange" bindready="onEditorReady" bindinput="onEditorInput" show-img-size show-img-toolbar show-img-resize>
+            </editor>
+        </view>
+        <include src="/pages/editor_toolbar.wxml" />
+        <view class="form-actions">
+            <button type="reset" form-type="reset" class="btn-reset">重置</button>
+            <button type="primary" form-type="submit" class="btn-submit" disabled="{{ submitDisabled }}">
+                确定
+            </button>
+        </view>
+    </form>
+</view>
+<!-- wxs -->
+<wxs src="../../../utils/helper.wxs" module="helper" />

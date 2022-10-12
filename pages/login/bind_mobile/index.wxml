@@ -1,0 +1,30 @@
+<include src="/pages/header.wxml"/>
+<view class="container">
+    <view class="avatar">
+        <van-image round width="5rem" height="5rem" src="{{ userInfo.avatar }}" />
+    </view>
+    <view class="nickname">
+        你好，{{ userInfo.nickName }}
+    </view>
+    <view class="title">
+        <text>请验证并绑定你的手机号</text>
+    </view>
+    <form bindsubmit="onSubmit">
+        <view class="helper-round-input">
+            <van-field name="mobile" model:value="{{mobile}}" maxlength="11" type="number" clearable placeholder="手机号码" focus border="{{false}}" input-class="input-mobile" bind:change="onMobileChange"/>
+        </view>
+        <view class="helper-round-input">
+            <van-field name="captcha" model:value="{{captcha}}" type="number" maxlength="6" placeholder="验证码" border="{{false}}" input-class="input-captcha" use-button-slot bind:change="onCaptchaChange" focus="{{captchaSended}}">
+                <van-button slot="button" size="small" type="primary" disabled="{{countdown || sendCaptchaDisabled}}" bind:click="onSendCaptchaClick" loading-type="circular" loading="{{captchaSending}}">
+                    <text hidden="{{countdown}}">发送短信验证码</text>
+                    <view hidden="{{!countdown}}">
+                        <van-count-down time="{{time}}" format="ss" bind:finish="onTimerFinish" id="countdown" auto-start="{{false}}"/>
+                    </view>
+                </van-button>
+            </van-field>
+        </view>
+        <button form-type="submit" type="primary" class="btn-submit" disabled="{{submitDisabled}}">
+            <i class="fa fa-chain fa-lg fa-fw"></i>绑定
+        </button>
+    </form>
+</view>

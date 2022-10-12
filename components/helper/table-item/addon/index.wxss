@@ -1,0 +1,67 @@
+@import '../../../vant/common/index.wxss';
+
+.list-cell {
+    display: flex;
+    text-align: left;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.table-item-main {
+    width: 100%;
+}
+
+.table-item__title {
+    display: flex;
+    font-size: 18px;
+    justify-content: space-between;
+    align-items: center;
+}
+.table-item__title .name {
+    display: flex;
+    text-align: left;
+    font-weight: bold;
+}
+.table-item__title .status {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-purple);
+    border-radius: 2px;
+    height: 18px;
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 8px;
+}
+.table-item__title .state {
+    margin-right: 4px;
+}
+.table-item__image {
+    position: relative;
+}
+
+.table-item__image .flag {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.table-item__intro {
+    font-size: 11px;
+    color: gray;
+    line-height: 18px;
+    padding: 4px 0;
+    text-align: left;
+}
+
+.table-item__foot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.table-item__author {
+    display: flex;
+    align-items: center;
+}
+.table-item__price {
+    font-weight: bold;
+}

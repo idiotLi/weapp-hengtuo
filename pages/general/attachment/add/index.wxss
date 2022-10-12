@@ -1,0 +1,13 @@
+.file-container {
+    margin: 60rpx 20rpx 40rpx 20rpx;
+    text-align: center;
+}
+
+.file-mimetype {
+    text-align: center;
+    margin-top: 40rpx;
+}
+
+.van-cell__title {
+    color: #666;
+}

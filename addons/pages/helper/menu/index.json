@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/addons/components/helper/table-item/helper/menu/index"
+    },
+    "navigationBarTitleText": "菜单",
+    "enablePullDownRefresh": false,
+    "disableScroll": false
+}

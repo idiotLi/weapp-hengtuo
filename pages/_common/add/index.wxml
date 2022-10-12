@@ -1,0 +1,174 @@
+<include src="/pages/header.wxml" />
+<view class="container">
+    <form id="form" class="form" bindsubmit="onSubmit" bindreset="onReset">
+        <van-cell-group>
+            <block wx:for="{{ config.field }}" wx:key="index" wx:if="{{ config.field[index].addable }}">
+                <!-- datetime -->
+                <block wx:if="{{ item.type === 'datetime' }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" hidden />
+                    <van-field label="{{ item.label }}" value="{{ helper.formatDate(value[index]) }}" placeholder="请选择" size="large" data-index="{{ index }}" error="{{ validatorError[index] }}" bindtap="onTapDatetimeField" required="{{ config.rules[index].required }}" readonly clickable>
+                        <view slot="right-icon" hidden="{{ !value[index] }}" data-index="{{ index }}" catch:tap="onDatetimeClear">
+                            <van-icon name="clear" class="datetime-clear-icon" />
+                        </view>
+                    </van-field>
+                    <van-action-sheet show="{{ showActionSheet[index] }}" description="请选择{{ item.label }}" close-on-click-overlay bind:close="onCloseActionSheet" z-index="110">
+                        <van-datetime-picker class="picker-{{ index }}" type="datetime" value="{{ helper.formatTimestamp(value[index]) }}" data-index="{{ index }}" bind:confirm="onDatetimeConfirm" bind:cancel="onCloseActionSheet" />
+                    </van-action-sheet>
+                </block>
+                <!-- date -->
+                <block wx:elif="{{ item.type === 'date' }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" hidden />
+                    <van-field label="{{ item.label }}" value="{{ helper.formatDate(value[index],'yyyy-MM-dd') }}" placeholder="请选择" size="large" data-index="{{ index }}" error="{{ validatorError[index] }}" bindtap="onTapDatetimeField" required="{{ config.rules[index].required }}" readonly clickable>
+                        <view slot="right-icon" hidden="{{ !value[index] }}" data-index="{{ index }}" catch:tap="onDatetimeClear">
+                            <van-icon name="clear" class="datetime-clear-icon" />
+                        </view>
+                    </van-field>
+                    <van-action-sheet show="{{ showActionSheet[index] }}" description="请选择{{ item.label }}" close-on-click-overlay bind:close="onCloseActionSheet" z-index="110">
+                        <van-datetime-picker class="picker-{{ index }}" type="date" value="{{ helper.formatTimestamp(value[index]) }}" data-index="{{ index }}" bind:confirm="onDatetimeConfirm" bind:cancel="onCloseActionSheet" />
+                    </van-action-sheet>
+                </block>
+                <!-- time -->
+                <block wx:elif="{{ item.type === 'time' }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" hidden />
+                    <van-field label="{{ item.label }}" value="{{ value[index] }}" placeholder="请选择" size="large" data-index="{{ index }}" error="{{ validatorError[index] }}" bindtap="onTapTimeField" required="{{ config.rules[index].required }}" readonly clickable>
+                        <view slot="right-icon" hidden="{{ !value[index] }}" data-index="{{ index }}" catch:tap="onDatetimeClear">
+                            <van-icon name="clear" class="datetime-clear-icon" />
+                        </view>
+                    </van-field>
+                    <van-action-sheet show="{{ showActionSheet[index] }}" description="请选择{{ item.label }}" close-on-click-overlay bind:close="onCloseActionSheet" z-index="110">
+                        <van-datetime-picker class="picker-{{ index }}" type="time" value="{{ value[index] }}" data-index="{{ index }}" bind:confirm="onTimeConfirm" bind:cancel="onCloseActionSheet" />
+                    </van-action-sheet>
+                </block>
+                <!-- year -->
+                <block wx:elif="{{ item.type === 'year' }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" hidden />
+                    <van-field label="{{ item.label }}" value="{{ value[index] }}" placeholder="请选择" size="large" data-index="{{ index }}" error="{{ validatorError[index] }}" bindtap="onTapYearField" required="{{ config.rules[index].required }}" input-class="cell-input" readonly clickable>
+                        <view slot="right-icon" hidden="{{ !value[index] }}" data-index="{{ index }}" catch:tap="onDatetimeClear">
+                            <van-icon name="clear" class="datetime-clear-icon" />
+                        </view>
+                    </van-field>
+                    <van-action-sheet show="{{ showActionSheet[index] }}" description="请选择{{ item.label }}" close-on-click-overlay bind:close="onCloseActionSheet" z-index="110">
+                        <van-picker show-toolbar class="picker-{{ index }}" columns="{{ years }}" data-index="{{ index }}" bind:confirm="onYearConfirm" bind:cancel="onCloseActionSheet" />
+                    </van-action-sheet>
+                </block>
+                <!-- text,number -->
+                <block wx:elif="{{ helper.inArray(item.type,['text','number','idcard','digit']) }}">
+                    <van-field label="{{ item.label }}" name="{{ index }}" value="{{ value[index] }}" placeholder="请输入" size="large" data-index="{{ index }}" type="{{ item.type }}" cursor-spacing="10" bind:blur="onFieldBlur" bind:focus="onFieldFocus" bind:change="onFieldChange" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" clearable />
+                </block>
+                <!-- password -->
+                <block wx:elif="{{ item.type === 'password' }}">
+                    <van-field label="{{ item.label }}" name="{{ index }}" value="{{ value[index] }}" placeholder="请输入" size="large" data-index="{{ index }}" type="password" cursor-spacing="10" bind:blur="onFieldBlur" bind:focus="onFieldFocus" bind:change="onFieldChange" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" clearable />
+                </block>
+                <!-- switch -->
+                <block wx:elif="{{ item.type === 'switch' }}">
+                    <van-cell title="{{ item.label }}" size="large" value-class="cell-value" title-class="cell-title-90px">
+                        <van-switch name="{{ index }}" custom-class="cell-switch" checked="{{ value[index] === undefined ? 1 : value[index] }}" size="24px" data-index="{{ index }}" bind:change="onSwitchChange" active-value="{{ 1 }}" inactive-value="{{ 0 }}" />
+                    </van-cell>
+                </block>
+                <!-- select -->
+                <block wx:elif="{{ helper.inArray(item.type,['select','radio']) }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" hidden />
+                    <van-field label="{{ item.label }}" value="{{ helper.trim(helper.keyValue(config.fieldContent[index])[value[index]]) }}" placeholder="请选择" size="large" data-index="{{ index }}" type="text" cursor-spacing="10" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" readonly is-link arrow-direction="down" bind:tap="onTapSelectField" />
+                    <van-action-sheet show="{{ showActionSheet[index] }}" description="请选择{{ item.label }}" close-on-click-overlay bind:close="onCloseActionSheet" z-index="110">
+                        <van-picker columns="{{ config.columns[index] }}" class="picker-{{ index }}" data-index="{{ index }}" show-toolbar bind:confirm="onSelectConfirm" bind:cancel="onCloseActionSheet" />
+                    </van-action-sheet>
+                </block>
+                <!-- selects -->
+                <block wx:elif="{{ helper.inArray(item.type,['selects'])}}">
+                    <input name="{{ index }}" value="{{ value[index] }}" hidden />
+                    <van-field label="{{ item.label }}" value="{{ helper.getSelectsText(value[index],config.columns[index]) }}" placeholder="请选择" size="large" data-index="{{ index }}" type="text" cursor-spacing="10" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" readonly is-link arrow-direction="down" bind:tap="onTapSelectsField" />
+                    <helper-popup-selects show="{{ showActionSheet[index] }}" selects="{{ config.columns[index] }}" bind:close="onCloseActionSheet" description="请选择{{ item.label }}" scroll-height="auto" bind:cancel="onCloseActionSheet" bind:confirm="onSelectsConfirm" value="{{ value[index] }}" class="picker-{{ index }}" data-index="{{ index }}" z-index="110" close-on-click-overlay />
+                </block>
+                <!-- image -->
+                <block wx:elif="{{ helper.inArray(item.type,['image'])}}">
+                    <van-field label="{{ item.label }}" name="{{ index }}" value="{{ value[index] }}" placeholder="请输入或上传" size="large" data-index="{{ index }}" type="text" cursor-spacing="10" bind:blur="onFieldBlur" bind:focus="onFieldFocus" bind:change="onFieldChange" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" border="{{ false }}" clearable />
+                    <van-cell title-class="cell-title-90px">
+                        <view slot="title">
+                        </view>
+                        <view class="uploader-cell-value">
+                            <van-uploader file-list="{{ helper.formatFileList(value[index],cdnurl) }}" bind:after-read="afterRead" max-count="1" image-fit="aspectFill" data-index="{{ index }}" bind:delete="onDeleteUploader" accept="image"/>
+                        </view>
+                    </van-cell>
+                </block>
+                <!-- images -->
+                <block wx:elif="{{ item.type === 'images' }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" type="text" maxlength="-1" hidden />
+                    <van-cell title="{{ item.label }}" title-class="cell-title-90px">
+                        <view class="uploader-cell-value">
+                            <van-uploader file-list="{{ helper.formatFileList(value[index],cdnurl) }}" bind:after-read="afterRead" preview-size="50px" image-fit="aspectFill" data-index="{{ index }}" bind:delete="onDeleteUploader" accept="image" />
+                        </view>
+                    </van-cell>
+                </block>
+                <!-- file -->
+                <block wx:elif="{{ item.type === 'file' }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" type="text" maxlength="-1" hidden />
+                    <van-cell title="{{ item.label }}" title-class="cell-title-90px">
+                        <view class="uploader-cell-value">
+                            <van-uploader file-list="{{ helper.formatFileList(value[index],cdnurl) }}" bind:after-read="afterRead" max-count="1" image-fit="aspectFill" data-index="{{ index }}" bind:delete="onDeleteUploader" upload-icon="plus" accept="all">
+                            </van-uploader>
+                        </view>
+                    </van-cell>
+                </block>
+                <!-- files -->
+                <block wx:elif="{{ item.type === 'files' }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" type="text" maxlength="-1" hidden />
+                    <van-cell title="{{ item.label }}" title-class="cell-title-90px">
+                        <view class="uploader-cell-value">
+                            <van-uploader file-list="{{ helper.formatFileList(value[index],cdnurl) }}" bind:after-read="afterRead" preview-size="50px" image-fit="aspectFill" data-index="{{ index }}" bind:delete="onDeleteUploader" upload-icon="plus" accept="all">
+                            </van-uploader>
+                        </view>
+                    </van-cell>
+                </block>
+                <!-- textarea -->
+                <block wx:elif="{{ item.type === 'textarea' }}">
+                    <van-field label="{{ item.label }}" name="{{ index }}" value="{{ value[index] }}" placeholder="请输入" size="large" data-index="{{ index }}" type="textarea" cursor-spacing="10" bind:blur="onFieldBlur" bind:focus="onFieldFocus" bind:change="onFieldChange" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" input-class="cell-input" clearable autosize />
+                </block>
+                <!-- editor -->
+                <block wx:elif="{{ item.type === 'editor' }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" maxlength="-1" hidden />
+                    <van-field label="{{ item.label }}" value="{{ helper.removeHtmlTag(value[index]) }}" placeholder="请编辑" size="large" data-index="{{ index }}" data-content="{{ value[index] }}" data-title="{{ item.label }}" type="text" cursor-spacing="10" bind:tap="openEditor" maxlength="-1" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" input-class="cell-input" readonly clickable>
+                        <van-icon slot="right-icon" name="edit" class="custom-icon" />
+                    </van-field>
+                    <!-- <van-cell title="{{ item.label }}" size="large" value-class="cell-value van-multi-ellipsis--l3" title-class="cell-title-90px" data-content="{{ value[index] }}" data-title="{{ item.label }}" data-index="{{ index }}" bind:click="openEditor" clickable>
+                        <van-icon slot="right-icon" name="edit" class="custom-icon" />
+                        {{ value[index] ? helper.removeHtmlTag(value[index]) : '点击编辑' }}
+                    </van-cell> -->
+                </block>
+                <!-- ruletree -->
+                <block wx:elif="{{ item.type === 'ruletree' }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" hidden />
+                    <van-field label="{{ item.label }}" value="共{{ helper.split(',',value[index]).length ? helper.split(',',value[index]).length : 0}}条" size="large" data-index="{{ index }}" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" readonly use-button-slot center>
+                        <van-button slot="button" type="primary" icon="cluster-o" size="small" data-index="{{ index }}" data-type="{{ item.type }}" bind:click="showPopupTree" disabled="{{ !value['pid'] && config.field.pid }}">选择权限</van-button>
+                    </van-field>
+                    <helper-popup-tree show="{{ showActionSheet[index] }}" show-toolbar="{{ true }}" tree="{{ tree[index] }}" active="{{ value[index] }}" value="{{ value[index] }}" bind:confirm="onRuleTreeConfirm" bind:cancel="onCloseActionSheet" bind:close="onCloseActionSheet" description="编辑{{ item.label }}" scroll-height="auto" class="tree-{{ index }}" data-index="{{ index }}" z-index="110" close-on-click-overlay />
+                </block>
+                <!-- radio -->
+                <!-- <block wx:elif="{{ helper.inArray(item.type,['radio']) }}">
+                    <van-cell size="large" label="{{ item.label }}" title-class="cell-title-90px">
+                        <van-radio-group name="{{ index }}" data-index="{{ index }}" value="{{ value[index] }}" bind:change="onRaidoChange" class="horizontal-radio-group">
+                            <van-radio wx:for="{{ config.fieldContent[index] }}" wx:key="radioValue" wx:for-index="radioValue" wx:for-item="radioText" name="{{ radioValue }}" custom-class="horizontal-radio">{{ radioText }}</van-radio>
+                        </van-radio-group>
+                    </van-cell>
+                </block> -->
+                <!-- else -->
+                <block wx:else>
+                    <van-field label="{{ item.label }}" name="{{ index }}" value="{{ value[index] }}" placeholder="请输入" size="large" data-index="{{ index }}" type="text" cursor-spacing="10" bind:blur="onFieldBlur" bind:focus="onFieldFocus" bind:change="onFieldChange" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" clearable />
+                </block>
+            </block>
+        </van-cell-group>
+        <view class="action-bar">
+            <!-- <view class="reset">
+                <button form-type="reset" type="reset">
+                    重置
+                </button>
+            </view> -->
+            <view class="submit">
+                <button form-type="submit" type="primary" disabled="{{ _submitDisabled }}">
+                    确定
+                </button>
+            </view>
+        </view>
+    </form>
+</view>
+<!-- wxs -->
+<wxs src="../../../utils/helper.wxs" module="helper" />

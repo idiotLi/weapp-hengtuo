@@ -1,0 +1,38 @@
+<view class="editor-toolbar van-hairline--top" hidden="{{keyboardHeight > 0 ? false : true}}" style="bottom: {{isIOS ? keyboardHeight : 0}}px" catchtouchmove="noop">
+    <scroll-view scroll-x="true" style="width: 100%" catchtouchmove="noop" catchtouchend="noop">
+        <view class="iconfont icon-undo" bindtap="undo"></view>
+        <view class="iconfont icon-redo" bindtap="redo"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.bold ? 'ql-active' : ''}} iconfont icon-zitijiacu" data-name="bold"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.italic ? 'ql-active' : ''}} iconfont icon-zitixieti" data-name="italic"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.underline ? 'ql-active' : ''}} iconfont icon-zitixiahuaxian" data-name="underline"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.strike ? 'ql-active' : ''}} iconfont icon-zitishanchuxian" data-name="strike"></view>
+        <view class="iconfont icon-charutupian" bindtap="insertImage"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.align === 'left' ? 'ql-active' : ''}} iconfont icon-zuoduiqi" data-name="align" data-value="left"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.align === 'center' ? 'ql-active' : ''}} iconfont icon-juzhongduiqi" data-name="align" data-value="center"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.align === 'right' ? 'ql-active' : ''}} iconfont icon-youduiqi" data-name="align" data-value="right"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.header === 1 ? 'ql-active' : ''}} iconfont icon-format-header-1" data-name="header" data-value="{{1}}"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.header === 2 ? 'ql-active' : ''}} iconfont icon-format-header-2" data-name="header" data-value="{{2}}"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.header === 3 ? 'ql-active' : ''}} iconfont icon-format-header-3" data-name="header" data-value="{{3}}"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.color === '#18bc9c' ? 'ql-active' : ''}} iconfont icon-text_color" data-name="color" data-value="#18bc9c"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.backgroundColor === '#18bc9c' ? 'ql-active' : ''}} iconfont icon-fontbgcolor" data-name="backgroundColor" data-value="#18bc9c"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.align === 'justify' ? 'ql-active' : ''}} iconfont icon-zuoyouduiqi" data-name="align" data-value="justify"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.lineHeight ? 'ql-active' : ''}} iconfont icon-line-height" data-name="lineHeight" data-value="2"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.letterSpacing ? 'ql-active' : ''}} iconfont icon-Character-Spacing" data-name="letterSpacing" data-value="2em"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.marginTop ? 'ql-active' : ''}} iconfont icon-722bianjiqi_duanqianju" data-name="marginTop" data-value="20px"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.marginBottom ? 'ql-active' : ''}} iconfont icon-723bianjiqi_duanhouju" data-name="marginBottom" data-value="20px"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.fontFamily ? 'ql-active' : ''}} iconfont icon-font" data-name="fontFamily" data-value="Pacifico"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.fontSize === '24px' ? 'ql-active' : ''}} iconfont icon-fontsize" data-name="fontSize" data-value="24px"></view>
+        <view class="iconfont icon-date" bindtap="insertDate"></view>
+        <view catchtap="onEditorFormat" class="iconfont icon-checklist" data-name="list" data-value="check"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.list === 'ordered' ? 'ql-active' : ''}} iconfont icon-youxupailie" data-name="list" data-value="ordered"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.list === 'bullet' ? 'ql-active' : ''}} iconfont icon-wuxupailie" data-name="list" data-value="bullet"></view>
+        <view catchtap="onEditorFormat" class="iconfont icon-outdent" data-name="indent" data-value="-1"></view>
+        <view catchtap="onEditorFormat" class="iconfont icon-indent" data-name="indent" data-value="+1"></view>
+        <view class="iconfont icon-fengexian" bindtap="insertDivider"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.script === 'sub' ? 'ql-active' : ''}} iconfont icon-zitixiabiao" data-name="script" data-value="sub"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.script === 'super' ? 'ql-active' : ''}} iconfont icon-zitishangbiao" data-name="script" data-value="super"></view>
+        <view class="iconfont icon-clearedformat" bindtap="removeFormat"></view>
+        <view class="iconfont icon-shanchu" bindtap="clear"></view>
+        <view catchtap="onEditorFormat" class="{{editorFormats.direction === 'rtl' ? 'ql-active' : ''}} iconfont icon-direction-rtl" data-name="direction" data-value="rtl"></view>
+    </scroll-view>
+</view>

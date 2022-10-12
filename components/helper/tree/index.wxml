@@ -1,0 +1,23 @@
+<include src="/pages/header.wxml" />
+<!-- <block wx:if="{{ helper.hasTreeChilds('parent',parent,data) }}"> -->
+    <!-- <van-collapse value="{{ activeNames }}" bind:change="onChange">
+        <van-collapse-item wx:if="{{ item.parent === parent }}" wx:for="{{ data }}" name="{{ item.id }}" custom-class="tree-collapse-item">
+            <view slot="title" class="tree-collapse-item-title">
+                <van-checkbox custom-class="tree-check" value="{{ helper.inArray(item.id,value) }}" shape="round" data-index="{{ item.id }}" catchtap="noop" bind:change="onCheckBoxChange">
+                    {{ item.text + 'id:' + item.id }}
+                </van-checkbox>
+            </view>
+            <helper-tree wx:if="{{ helper.hasTreeChilds('parent',item.id,data) }}" data="{{ data }}" parent="{{ item.id }}" value="{{ value }}"/>
+        </van-collapse-item>
+    </van-collapse> -->
+<!-- </block> -->
+<!-- <block wx:else>
+    <view class="tree-check-group" wx:if="{{ rule.parent === parent }}" wx:for="{{ data }}" wx:for-item="rule">
+        <van-checkbox custom-class="tree-check" value="{{ helper.inArray(rule.id,value) }}" shape="square" bind:change="onCheckBoxChange" data-index="{{ rule.id }}">
+            {{ rule.text }} (id:{{ rule.id }})
+        </van-checkbox>
+    </view>
+</block> -->
+<!-- wxs -->
+<wxs src="../../vant/wxs/utils.wxs" module="utils" />
+<wxs src="../../../utils/helper.wxs" module="helper" />

@@ -1,0 +1,9 @@
+{
+    "usingComponents": {
+        
+    },
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "账号绑定",
+    "disableScroll": true
+}

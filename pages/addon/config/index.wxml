@@ -1,0 +1,22 @@
+<include src="/pages/header.wxml" />
+<van-collapse wx:if="{{ tips.length !== 0 }}" value="{{ activeTips }}" bind:change="onCollapseChange" accordion>
+    <van-collapse-item name="1">
+        <view slot="title" class="tips-title">
+            {{ tips.title ? tips.title : '温馨提示' }}
+            <van-icon name="info-o" />
+        </view>
+        <view wx:if="{{ tipsWxml }}" class="tips-wxml">
+            <towxml nodes="{{ tipsWxml }}"/>
+        </view>
+        <block wx:else>{{ tips.value }}</block>
+    </van-collapse-item>
+</van-collapse>
+<block wx:for="{{ config }}" wx:key="index" wx:for-item="row">
+    <van-cell wx:if="{{ row.type === 'bool' }}" title="{{ row.title }}" is-link value="{{ helper.toString(row.value) === '1' ? '打开' : '关闭' }}" data-row="{{ row }}" size="large" bind:click="onClickRow" />
+
+    <van-cell wx:elif="{{ row.type === 'array' }}" title="{{ row.title }}" is-link value="{{ helper.toString(row.value) }}" data-row="{{ row }}" size="large" bind:click="onClickRow" />
+
+    <van-cell wx:else title="{{ row.title }}" is-link value="{{ row.content.length === 0 ? row.value : row.content[row.value]}}" data-row="{{ row }}" size="large" bind:click="onClickRow" value-class="van-ellipsis" />
+</block>
+<!-- wxs -->
+<wxs src="../../../utils/helper.wxs" module="helper" />

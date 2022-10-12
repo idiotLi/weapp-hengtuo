@@ -1,0 +1,48 @@
+<include src="/pages/header.wxml"/>
+<view class="container">
+    <view class="logo">
+        <i class="fa fa-flash fa-5x"></i>
+    </view>
+    <view class="site-name">
+        恒拓跟单系统
+        <view class="text-tips">用手机管理你的工作流</view>
+    </view>
+    <view class="loading" wx:if="{{ showLoading }}">
+        <van-loading color="#18bc9c" size="40" vertical>登录中...</van-loading>
+    </view>
+    <van-transition show="{{ canUsernameLogin }}" duration="1500">
+        <view class="btn-username">
+            <navigator url="/pages/login/username/index">
+                <van-button type="primary" block plain hairline>
+                    <i class="fa fa-lock fa-lg fa-fw"></i>
+                    账号密码登录
+                </van-button>
+            </navigator>
+        </view>
+    </van-transition>
+    <van-transition show="{{ canWechatLogin }}" duration="1500">
+        <view class="btn-wechat">
+            <van-button type="info" block plain hairline lang="zh_CN" bindtap="onGetUserInfo" withCredentials="true">
+                <i class="fa fa-weixin fa-lg fa-fw"></i>
+                微信一键登录
+            </van-button>
+        </view>
+    </van-transition>
+    <van-transition show="{{ canMobileLogin }}" duration="1500">
+        <view class="btn-mobile">
+            <navigator url="/pages/login/mobile/index">
+                <van-button type="success" plain hairline block plain hairline>
+                    <i class="fa fa-mobile fa-lg fa-fw"></i>
+                    手机号码登录
+                </van-button>
+            </navigator>
+        </view>
+    </van-transition>
+
+    <view class="text-tips">
+        <towxml nodes="{{ loginIndexText }}"/>
+    </view>
+</view>
+<view class="version" wx:if="{{ accountInfo.miniProgram.version }}">
+    v{{ accountInfo.miniProgram.version }}
+</view>

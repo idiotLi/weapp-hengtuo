@@ -1,0 +1,33 @@
+<include src="/pages/header.wxml" />
+<view class="container">
+	<view class="bind" wx:if="{{ userInfo.wxUserInfo.wxopenid === '' }}">
+		<view class="title">将与此微信账号绑定</view>
+		<view class="avatar">
+			<open-data type="userAvatarUrl"></open-data>
+		</view>
+		<view class="nickname">
+			<open-data type="userNickName"></open-data>
+		</view>
+		<view class="actions">
+			<van-button type="primary" bindtap="bind" block>绑定</van-button>
+		</view>
+		<view class="text-tips">
+			绑定后，可使用「微信一键登录」；如提示微信账号已与其它账号绑定，请解除原账号的微信绑定。
+		</view>
+	</view>
+	<view class="unbind" wx:else>
+		<view class="title">已绑定微信账号</view>
+		<view class="avatar">
+			<van-image round width="80px" height="80px" src="{{ userInfo.wxUserInfo.wxavatarurl }}" show-loading />
+		</view>
+		<view class="nickname">
+			{{ userInfo.wxUserInfo.wxnickname }}
+		</view>
+		<view class="actions">
+			<van-button type="danger" bind:tap="unbind" block>解除绑定</van-button>
+		</view>
+		<view class="text-tips">
+			解除绑定后，将无法使用「微信一键登录」。
+		</view>
+	</view>
+</view>

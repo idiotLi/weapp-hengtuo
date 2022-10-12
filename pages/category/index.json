@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/components/helper/table-item/category/index"
+    },
+    "navigationBarTitleText": "分类管理",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

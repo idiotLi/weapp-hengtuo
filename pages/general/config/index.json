@@ -1,0 +1,6 @@
+{
+    "usingComponents": {},
+    "navigationBarTitleText": "系统配置",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

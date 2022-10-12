@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/components/helper/table-item/user/rule/index"
+    },
+    "navigationBarTitleText": "会员规则",
+    "enablePullDownRefresh": false,
+    "disableScroll": false
+}

@@ -1,0 +1,67 @@
+@import '../../../../../../components/vant/common/index.wxss';
+.list-cell {
+    display: flex;
+    text-align: left;
+    width: 100%;
+    margin-top: 4px;
+}
+.table-item {
+    display: flex;
+}
+.table-item .table-item__icon {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+    color: var(--color-primary);
+}
+.table-item-notmenu {
+    display: flex;
+    color: var(--color-gray);
+}
+.table-item-notmenu .table-item__icon {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+    color: var(--color-gray);
+}
+.table-item-main {
+    width: 100%;
+}
+.table-item__title {
+    display: flex;
+    justify-content: space-between;
+}
+.table-item__title .name {
+    text-align: left;
+    font-weight: bold;
+    padding-bottom: 6px;
+}
+.table-item__title .status {
+    flex: 1;
+}
+.table-item-detail {
+    margin-top: 8px;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.table-item__row {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+}
+.table-item__item {
+    display: inline-flex;
+    margin-right: 10px;
+}
+.table-item__item .label {
+    color: gray;
+}
+.table-item__item .value {
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

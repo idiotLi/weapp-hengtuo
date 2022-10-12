@@ -1,0 +1,54 @@
+@import '../../../../vant/common/index.wxss';
+.list-cell {
+    display: flex;
+    text-align: left;
+    width: 100%;
+    margin-top: 4px;
+}
+.table-item {
+    display: flex;
+}
+.table-item__image {
+    margin-top: 6px;
+    margin-right: 16px;
+}
+.table-item-main {
+    width: 100%;
+}
+.table-item__title {
+    display: flex;
+}
+.table-item__title .name {
+    text-align: left;
+    font-weight: bold;
+    padding-bottom: 6px;
+}
+.table-item__title .status {
+    position: absolute;
+    right: 0;
+}
+.table-item-detail {
+    margin-top: 8px;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.table-item__row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.table-item__item {
+    display: inline-flex;
+    margin-right: 10px;
+}
+.table-item__item .label {
+    color: gray;
+    white-space: nowrap;
+}
+.table-item__item .value {
+    text-align: left;
+    margin-left: 4px;
+}

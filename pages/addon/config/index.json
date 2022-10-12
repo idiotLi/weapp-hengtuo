@@ -1,0 +1,7 @@
+{
+    "usingComponents": {},
+    "navigationBarTitleText": "插件配置",
+    "navigationBarBackgroundColor": "#605ca8",
+    "enablePullDownRefresh": true,
+    "disableScroll": false
+}

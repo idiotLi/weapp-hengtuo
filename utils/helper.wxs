@@ -1,0 +1,375 @@
+/**
+ * 检测数组中是否存在某个元素
+ * @param {any} search
+ * @param {array} array
+ */
+function inArray(search, array) {
+    if (!array) return
+    for (var i = 0; i < array.length; ++i) {
+        if (array[i] == search) {
+            return true
+        }
+    }
+    return false
+}
+
+function toString(str) {
+    if (!str && str !== 0) return
+    if (str.constructor === 'Object') {
+        return JSON.stringify(str)
+    }
+    return str.toString()
+}
+/**
+ * 遍历对象，返回对象key数组
+ * @param {object} obj 要遍历的对象
+ */
+function objectKeys(obj) {
+    var str = JSON.stringify(obj)
+    var reg = getRegExp('"(\w+)":|[{}]', "g")
+    var keys = []
+    var nested = 0
+    var result = null
+    while ((result = reg.exec(str)) !== null) {
+        var match = result[0]
+
+        switch (match) {
+            case '{':
+                nested++
+                break
+            case '}':
+                nested--
+                break
+            default:
+                if (nested === 1) keys.push(result[1])
+                break
+        }
+    }
+    return keys
+}
+/**
+ * 对象数组转对象
+ * @param arr 对象数组 [{1:a},{2:b},{3:c}] -> {1:a,2:b,3:c}
+ */
+function keyValue(arr) {
+    if (!arr) return
+    if (arr.constructor === 'Object') return arr
+    var result = {}
+    for (var i = 0; i < arr.length; i++) {
+        // 键值不为对象，说明为标准键值格式，直接返回
+        if (arr[i].constructor !== 'Object') return arr
+        var keys = objectKeys(arr[i])
+        var objKey = null
+        if (keys.constructor === 'Array' && keys.length === 0) {
+            // 判断以0为key的对象
+            result['0'] = arr[i][0]
+        } else {
+            objKey = objectKeys(arr[i])[0]
+            result[objKey] = arr[i][objKey]
+        }
+    }
+    return result
+}
+// 去除字符串首尾空格和全角空格
+function trim(str) {
+    if (typeof str === 'undefined') return
+    if (str.constructor === 'String') {
+        return str.replace(
+            getRegExp('(^(\s|\u00A0|\u0020|\u3000)+)|((\s|\u00A0|\u0020|\u3000)+$)', 'g'), ''
+        )
+    }
+    return str
+}
+/**
+ * 分割字符为数组
+ * @param {string} separator
+ * @param {string} str
+ * @param {number} howmany
+ */
+function split(separator, str, howmany) {
+    if (!str || str === '') return
+    if (str.constructor === 'String') {
+        return str.split(separator, howmany)
+    }
+    if (str.constructor === 'Array') {
+        return str
+    }
+}
+/**
+ * 格式化时间戳
+ * @param {string|number} str 时间字符串或者时间戳
+ * @param {number} length 返回的时间戳长度 10 | 13
+ */
+function formatTimestamp(str, length) {
+    if (!str) return
+    length = length ? length : 13
+    if (str.constructor === 'Number') {
+        if (length === 13) {
+            return str.toString().length === 13 ? str : str * 1000
+        }
+        if (length === 10) {
+            return str.toString().length === 10 ? str : parseInt(str / 1000)
+        }
+    }
+    if (str.constructor === 'String') {
+        str = str.substring(0, 19)
+        var reg = getRegExp('-', 'g')
+        str = str.replace(reg, '/')
+        var timestamp = getDate(str).getTime()
+        return timestamp
+    }
+}
+/**
+ * 格式化时间字符串
+ * @param {number|string} timestamp 时间戳或时间字符串
+ * @param {string} format 目标格式 'yyyy-MM-dd HH:mm:ss'
+ */
+function formatDate(timestamp, format) {
+    if (!timestamp) return
+    if (timestamp.constructor === 'String' && timestamp.indexOf('-') !== -1) {
+        timestamp = formatTimestamp(timestamp)
+    }
+    if (!format) format = 'yyyy-MM-dd HH:mm:ss'
+    timestamp = timestamp.toString().length === 10 ? timestamp * 1000 : timestamp
+    var date = getDate(timestamp)
+    var dict = {
+        'yyyy': date.getFullYear(),
+        'M': date.getMonth() + 1,
+        'd': date.getDate(),
+        'H': date.getHours(),
+        'm': date.getMinutes(),
+        's': date.getSeconds(),
+        'S': ('' + (date.getMilliseconds() + 1000)).substring(1),
+        'MM': ('' + (date.getMonth() + 101)).substring(1),
+        'dd': ('' + (date.getDate() + 100)).substring(1),
+        'HH': ('' + (date.getHours() + 100)).substring(1),
+        'mm': ('' + (date.getMinutes() + 100)).substring(1),
+        'ss': ('' + (date.getSeconds() + 100)).substring(1)
+    }
+    return format.replace(
+        getRegExp('(y+|M+|d+|H+|s+|m+|S)', 'g'),
+        function (a) {
+            return dict[a];
+        }
+    )
+}
+/**
+ * 返回适当的当前时间戳
+ * @param {string} type  日期类型：datetime|date|year-month
+ * @return timestamp
+ */
+function currentTime(type) {
+    var date = getDate()
+    switch (type) {
+        case 'datetime':
+            // 当前时间戳(13位)
+            return date.getTime()
+        case 'date':
+            // 当天00:00:00时间戳(13位)
+            return getDate(date.toLocaleDateString()).getTime()
+        case 'year-month':
+            // 当月1日00:00:00时间戳(13位)
+            date.setDate(1)
+            date.setHours(0)
+            date.setSeconds(0)
+            date.setMinutes(0)
+            return date.getTime()
+        default:
+            return date.getTime()
+    }
+}
+/**
+ * 根据URL检查用户是否拥有操作权限
+ * @param {string} url 要验证的规则URL
+ * @param {array} ruleList 用户拥有的所有规则集合
+ */
+function authCheck(url, ruleList) {
+    if (url && ruleList) {
+        return ruleList.indexOf(url.replace(getRegExp('\.', 'g'), '/')) !== -1 ? true : false
+    }
+}
+/**
+ * 根据一个URL对象集合检查用户是否拥有其中一个操作权限
+ * @param {object} multi 要验证的操作集合
+ * @param {array} ruleList 用户拥有的所有规则集合
+ */
+function authCheckMulti(multi, ruleList) {
+    if (multi && ruleList) {
+        var keys = objectKeys(multi)
+        for (var i = 0; i < keys.length; ++i) {
+            if (authCheck(multi[keys[i]].url, ruleList)) {
+                return true
+            }
+        }
+        return false
+    }
+}
+/**
+ * 是否图片地址
+ * @param {string} url 文件url
+ */
+function isImage(url) {
+    if (!url) return
+    return url.match(getRegExp('\.(jpg|jpeg|jpe|gif|png|bmp|tif|tiff|ico|webp|svg)$', 'i')) !== null
+}
+/**
+ * 获取路径中文件后缀名
+ * @param {string} url 文件url
+ */
+function getFileSuffix(url) {
+    if (!url) return
+    var index = url.lastIndexOf('.')
+    return url.substring(index + 1)
+}
+/**
+ * 字节数转其它单位大小
+ * @param {number} byte 字节数
+ */
+function formatFileSize(byte) {
+    var scale = 1000
+    var digitList = ['Kb', 'Mb', 'Gb', 'Tb']
+    var _integer = Math.round(byte / scale * 10) / 10 //最小单位kb
+    var digit = 0
+    while (_integer > scale) {
+        _integer = Math.round(_integer / scale * 10) / 10
+        digit++
+    }
+    return _integer + digitList[digit]
+}
+
+function strReplace(find, replace, str) {
+    if (str) {
+        return str.replace(getRegExp(find, 'g'), replace)
+    }
+}
+/**
+ * 根据选项键值对数组返回已选项的文本格式字符串
+ * @param {string} value 已选项的字符串
+ * @param {array} columns 选项键值对数组
+ * @param {string} separator 返回字符串的分隔符
+ */
+function getSelectsText(value, columns, separator) {
+    if (value && columns) {
+        var text = []
+        var valueArr = value.split(',')
+        for (var i = 0; i < columns.length; ++i) {
+            for (var ii = 0; ii < valueArr.length; ++ii) {
+                if (columns[i].value.toString() === valueArr[ii].toString()) {
+                    text.push(trim(columns[i].text))
+                }
+            }
+        }
+        return text.join(separator ? separator : ',')
+    }
+}
+/**
+ * 根据值的键值对配置转换为可读文本数组
+ * @param {string} value 值的字符串格式:aa,bb,cc
+ * @param {array} template 值的键值对配置(例如config.fieldContent定义的内容)
+ */
+function valueToTextArray(value, template) {
+    if (value && template) {
+        var text = []
+        var valueArr = value.toString().split(',')
+        for (var i = 0; i < valueArr.length; ++i) {
+            text[i] = template[valueArr[i]]
+        }
+        return text
+    }
+}
+
+function isCdnurl(url) {
+    if (url) {
+        return url.match(getRegExp('^((ht|f)tps?):\/\/([\w-]+(\.[\w-]+)*\/?)+(\?([\w\-\.,@?^=%&:\/~\+#]*)+)?$', 'i')) !== null
+    }
+}
+
+function formatFileList(str, cdnurl) {
+    if (str) {
+        var arr = str.split(',')
+        var fileList = []
+        for (var i = 0; i < arr.length; ++i) {
+            fileList[i] = {
+                url: isCdnurl(arr[i]) ? arr[i] : cdnurl + arr[i]
+            }
+        }
+        return fileList
+    }
+}
+/**
+ * 格式化金额
+ * @param num 金额
+ * @param showCents 是否显示小数位
+ */
+function formatMoney(num, showCents) {
+    if (isNaN(num))
+        num = '0'
+    sign = (num == (num = Math.abs(num)))
+    num = Math.floor(num * 100 + 0.50000000001)
+    cents = num % 100
+    num = Math.floor(num / 100).toString()
+    if (cents < 10)
+        cents = '0' + cents;
+    for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+        num = num.substring(0, num.length - (4 * i + 3)) + ',' +
+        num.substring(num.length - (4 * i + 3))
+    return (((sign) ? '' : '-') + num + (showCents ? '.' + cents : ''))
+}
+/**
+ * 查找str字符串是否以find字符串结尾
+ * @param str 
+ * @param find 
+ */
+function endsWith(str, find) {
+    if (str && find) {
+        return str.substring(str.length - find.length) === find
+    }
+}
+/**
+ * 移除html标签返回纯文本
+ * @param html 富文本
+ */
+function removeHtmlTag(html) {
+    if (html) {
+        return html.replace(getRegExp('<\/?.+?>', 'g'), '')
+    }
+}
+/**
+ * 将筛选语法转换为可读文本
+ * @param op 筛选语法
+ */
+function filterOpText(op) {
+    if (!op) return
+    var opList = ['=', '!=', 'LIKE', 'NOT LIKE', '>', '<', '>=', '<=', 'IN', 'NOT IN', 'FIND_IN_SET', 'BETWEEN', 'NOT BETWEEN', 'RANGE', 'NOT RANGE', 'NULL', 'NOT NULL']
+    var textList = ['等于', '不等于', '包含', '不包含', '大于', '小于', '大于等于', '小于等于', '列表中', '列表外', '匹配', '区间内', '区间外', '范围内', '范围外', '为空', '不为空']
+    if (opList.indexOf(op) !== -1) {
+        return textList[opList.indexOf(op)]
+    }
+    return op
+}
+
+module.exports = {
+    inArray: inArray,
+    split: split,
+    toString: toString,
+    currentTime: currentTime,
+    formatTimestamp: formatTimestamp,
+    formatDate: formatDate,
+    trim: trim,
+    authCheck: authCheck,
+    authCheckMulti: authCheckMulti,
+    isImage: isImage,
+    getFileSuffix: getFileSuffix,
+    formatFileSize: formatFileSize,
+    strReplace: strReplace,
+    objectKeys: objectKeys,
+    keyValue: keyValue,
+    getSelectsText: getSelectsText,
+    valueToTextArray: valueToTextArray,
+    isCdnurl: isCdnurl,
+    formatFileList: formatFileList,
+    formatMoney: formatMoney,
+    endsWith: endsWith,
+    removeHtmlTag: removeHtmlTag,
+    filterOpText: filterOpText
+}

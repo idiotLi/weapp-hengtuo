@@ -1,0 +1,32 @@
+<van-popup show="{{ show }}" position="bottom" round="{{ round }}" z-index="{{ zIndex }}" overlay="{{ overlay }}" custom-class="helper-popup-tree" safe-area-inset-bottom="{{ safeAreaInsetBottom }}" close-on-click-overlay="{{ closeOnClickOverlay }}" bind:close="onClickOverlay">
+    <view wx:if="{{ title }}" class="van-hairline--bottom helper-popup-tree__header">
+        {{ title }}
+        <van-icon name="close" custom-class="helper-popup-tree__close" bind:click="onClose" />
+    </view>
+    <view wx:if="{{ description }}" class="van-hairline--bottom helper-popup-tree__description">
+        {{ description }}
+    </view>
+    <view hidden="{{ tree.length }}" class="page-loading">
+        <view class="helper-spinner">
+            <view class="double-bounce1"></view>
+            <view class="double-bounce2"></view>
+        </view>
+    </view>
+    <form bindsubmit="onConfirm">
+        <view wx:if="{{ showToolbar }}" class="helper-popup-tree__toolbar van-hairline--top-bottom toolbar-class">
+            <view class="helper-popup-tree__cancel {{ readOnly ? 'font-color-info' : 'font-color-primary' }}" hover-class="helper-popup-tree__cancel--hover" hover-stay-time="70" bind:tap="onCancel">{{ '取消' }}</view>
+            <view class="helper-popup-tree__collapse {{ readOnly ? 'font-color-info' : 'font-color-primary' }}" hover-class="helper-popup-tree__collapse--hover" hover-stay-time="70" bind:tap="onCollapse">{{ active.length ? '折叠' : '展开' }}</view>
+            <view wx:if="{{ !readOnly }}" class="helper-popup-tree__reset" hover-class="helper-popup-tree__reset--hover" hover-stay-time="70" bind:tap="onReset">{{ '清空' }}</view>
+            <view wx:if="{{ !readOnly }}" class="helper-popup-tree__checkall" hover-class="helper-popup-tree__checkall--hover" hover-stay-time="70" bind:tap="onCheckAll">{{ allNodes.length !== value.length ? '全选' : '反选' }}</view>
+            <button wx:if="{{ !readOnly }}" class="helper-popup-tree__confirm" hover-class="helper-popup-tree__confirm--hover" hover-stay-time="70" formType="submit">确认</button>
+        </view>
+        <view>
+            <scroll-view scroll-y style="height:{{ tree.length ? scrollHeight : '100px' }};max-height:80vh;">
+                <helper-popup-tree-item wx:for="{{ tree }}" item="{{ item }}" active="{{ active }}" wx:key="id" checks="{{ value }}" bind:treeCollapseChange="onTreeCollapseChange" bind:change="onTreeChange" read-only="{{ readOnly }}"/>
+            </scroll-view>
+        </view>
+    </form>
+    <slot />
+</van-popup>
+<wxs src="../../vant/wxs/utils.wxs" module="utils" />
+<wxs src="../../../utils/helper.wxs" module="helper" />

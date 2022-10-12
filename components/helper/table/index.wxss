@@ -1,0 +1,194 @@
+@import '../../vant/common/index.wxss';
+
+.finish,
+.loading {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.item {
+    display: flex;
+    text-align: left;
+    width: 100%;
+}
+
+.item .multi {
+    padding: 0 16px;
+    justify-content: center;
+    align-items: center;
+}
+.multi-checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.helper-table-item {
+    width: 100%;
+}
+
+.helper-tabs-primary {
+    --tabs-nav-background-color: var(--color-primary);
+}
+.helper-tabs-dark {
+    --tabs-nav-background-color: var(--color-dark);
+}
+.helper-tabs-info {
+    --tabs-nav-background-color: var(--color-info);
+}
+.helper-tabs-warning {
+    --tabs-nav-background-color: var(--color-warning);
+}
+.helper-tabs-danger {
+    --tabs-nav-background-color: var(--color-danger);
+}
+.helper-tabs-purple {
+    --tabs-nav-background-color: var(--color-purple);
+}
+
+.helper-tabs-nav {
+    --tabs-bottom-bar-color: #fff;
+    --tab-active-text-color: #fff;
+    --tab-text-color: #fff;
+}
+
+.helper-tabs-nav .van-tabs__line {
+    bottom: 4px !important;
+}
+
+/* 列表页操作条样式 */
+.operate-bar {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #fff;
+    color: gray;
+}
+
+.operate-bar-btn {
+    font-size: 14px !important;
+    font-weight: bold;
+    border: 0 !important;
+}
+
+.operate-bar-total {
+    width: 166rpx;
+    font-size: 12px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.operate-bar-sort {
+    width: 200rpx;
+    display: flex;
+}
+
+.operate-bar-multi,
+.operate-bar-search,
+.operate-bar-filter {
+    width: 30px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.operate-bar-add {
+    width: 180rpx;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.operate-bar-multi:hover,
+.operate-bar-search:hover,
+.operate-bar-filter:hover {
+    background-color: whitesmoke;
+}
+
+/* 列表页多选条样式 */
+.multi-bar {
+    font-size: 11px;
+    height: 44px;
+    background-color: #fff;
+    color: gray;
+}
+
+.multi-bar .multi-checkall,
+.multi-bar .multi-cancel {
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.multi-bar .multi-text {
+    line-height: 44px;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 22px;
+}
+
+/* 多选操作底部弹出层样式 */
+.multi-popup {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 200rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff !important;
+    padding-bottom: calc(env(safe-area-inset-bottom) - 40rpx) !important;
+}
+
+.multi-scroll-view {
+    width: auto;
+    overflow: hidden;
+}
+
+.multi-btns {
+    padding: 0 6px;
+}
+
+.multi-btn {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60px !important;
+    margin-right: 6px;
+}
+
+/* 列表页搜索框样式 */
+.search-bar {
+    height: 44px;
+    background-color: #fff;
+}
+
+.search-bar .search-bar-search {
+    height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar .search-bar-cancel {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar .van-search {
+    width: 100%;
+    padding: 0;
+}
+
+.search-bar .van-search__content {
+    background-color: #fff;
+    padding: 0 0 0 22px !important;
+}

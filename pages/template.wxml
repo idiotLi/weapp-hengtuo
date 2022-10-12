@@ -1,0 +1,24 @@
+<template name="data-finish">
+    <van-divider dashed contentPosition="center">没有更多记录了</van-divider>
+</template>
+<template name="data-loading">
+    <van-loading size="18px">加载中...</van-loading>
+</template>
+<template name="data-empty">
+    <van-icon name="closed-eye" size="100px" />
+    <view class="text">暂无记录</view>
+</template>
+<template name="page-loading">
+    <view class="page-loading">
+        <view class="helper-spinner">
+            <view class="double-bounce1"></view>
+            <view class="double-bounce2"></view>
+        </view>
+    </view>
+</template>
+<template name="page-error">
+    <view class="page-error">
+        <van-icon name="warning-o" size="100px" />
+        <view>{{ _error }}</view>
+    </view>
+</template>

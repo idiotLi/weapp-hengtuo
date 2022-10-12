@@ -1,0 +1,19 @@
+<include src="/pages/header.wxml" />
+<van-tabs swipeable sticky animated active="{{ activeTab }}" bind:change="onTabChange">
+    <van-tab title="{{ item.title }}" wx:for="{{ siteList }}" wx:key="name" name="{{ item.name }}">
+        <scroll-view wx:if="{{ activeTab === index }}" scroll-y style="height:{{ scrollHeight }}px;" refresher-enabled="{{ true }}" refresher-triggered="{{ triggered }}" bindrefresherrefresh="onRefresh">
+            <van-cell wx:for="{{ item.list }}" wx:for-item="row" wx:key="id" title="{{ row.title }}" is-link value="{{ row.value_title }}" data-row="{{ row }}" size="large" bind:click="onClickRow" value-class="van-ellipsis" />
+            <view class="empty" wx:if="{{ !item.list.length }}">
+                <template is="data-empty" />
+            </view>
+        </scroll-view>
+    </van-tab>
+    <van-tab title="添加配置" name="add" wx:if="{{ showAddTab && auth.add }}">
+        <view class="add-container">
+            <view class="helper-add-squre" bindtap="onAddTap">
+                <van-icon name="plus" />
+                <text>点击添加</text>
+            </view>
+        </view>
+    </van-tab>
+</van-tabs>

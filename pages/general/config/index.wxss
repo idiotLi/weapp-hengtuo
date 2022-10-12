@@ -1,0 +1,32 @@
+.add-container {
+    display: flex;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+}
+.helper-add-squre {
+    position: relative;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 120px;
+    height: 120px;
+    margin: 0 8px 8px 0;
+    background-color: whitesmoke;
+    border-radius: 8px;
+}
+.helper-add-squre van-icon {
+    color: var(--color-gray);
+    font-size: 24px;
+}
+.helper-add-squre text {
+    margin-top: 8px;
+    color: var(--color-gray);
+    font-size: 12px;
+}

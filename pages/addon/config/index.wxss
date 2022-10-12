@@ -1,0 +1,14 @@
+page {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+.tips-title {
+    font-weight: bold;
+    color: var(--color-purple);
+    display: flex;
+    justify-content: start;
+}
+.tips-wxml .h2w__main{
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}

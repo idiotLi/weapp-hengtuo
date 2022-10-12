@@ -1,0 +1,8 @@
+{
+    "usingComponents": {},
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "预览媒体",
+    "enablePullDownRefresh": false,
+    "disableScroll": true,
+    "backgroundColor": "#000"
+}

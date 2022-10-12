@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/components/helper/table-item/user/user/index"
+    },
+    "navigationBarTitleText": "会员管理",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

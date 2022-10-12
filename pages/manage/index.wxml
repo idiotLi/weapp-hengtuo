@@ -1,0 +1,52 @@
+<include src="/pages/header.wxml" />
+<view hidden="{{ _ready }}">
+    <template is="page-loading" />
+</view>
+<block wx:if="{{ _ready }}">
+    <van-tabs active="{{ activeTab }}" bind:click="onTabClick" bind:change="onTabClick" swipeable animated sticky>
+        <van-tab wx:if="{{ tabList }}" wx:for="{{ tabList }}" wx:for-item="tab" wx:key="id" title="{{ tab.name }}" name="{{ tab.id }}">
+            <scroll-view wx:if="{{ activeTab === tab.id }}" scroll-y style="height:{{ scrollHeight }}px;" refresher-enabled="{{ true }}" refresher-triggered="{{ triggered }}" bindrefresherrefresh="onRefresh">
+                <view class="grid van-hairline--left">
+                    <van-grid column-num="3" square clickable border="{{ true }}">
+                        <van-grid-item use-slot wx:if="{{ helper.inArray(item.id,configMenuList) || item.type === 'extend' }}" wx:key="name" wx:for="{{ menuList[tab.id] }}" bind:click="onGridClick" data-url="{{ item.url }}" data-title="{{ item.title }}" data-id="{{ item.id }}" data-child="{{ item.childlist }}">
+                            <view class="grid-menu">
+                                <view class="grid-menu-icon">
+                                    <i class="{{ item.icon }} fa-2x"></i>
+                                </view>
+                                <view class="grid-menu-title">
+                                    <text>{{ item.title }}</text>
+                                </view>
+                                <view class="grid-menu-name">
+                                    <text>{{ item.name }}</text>
+                                </view>
+                            </view>
+                        </van-grid-item>
+                    </van-grid>
+                </view>
+                <view class="empty" wx:if="{{ !menuList[tab.id] }}">
+                    <template is="data-empty" />
+                </view>
+            </scroll-view>
+        </van-tab>
+    </van-tabs>
+</block>
+<!-- 上拉菜单 -->
+<van-action-sheet show="{{ showActionSheet }}" close-on-click-overlay bind:close="onCloseActionSheet" description="请选择管理项">
+    <van-grid column-num="3" square clickable border="{{ true }}">
+        <van-grid-item use-slot wx:if="{{ helper.inArray(item.id,configMenuList)  || item.type === 'action' }}" wx:for="{{ subMenuList }}" wx:key="name" bind:click="onGridClick" data-type="{{ item.type }}" data-child="{{ item.childlist }}" data-url="{{ item.url }}" data-title="{{ item.title }}" data-actiondata="{{ item.data }}" data-id="{{ item.id }}">
+            <view class="grid-menu">
+                <view class="grid-menu-icon">
+                    <i class="{{ item.icon }} fa-2x"></i>
+                </view>
+                <view class="grid-menu-title">
+                    <text>{{ item.title }}</text>
+                </view>
+                <view class="grid-menu-name">
+                    <text>{{ item.name }}</text>
+                </view>
+            </view>
+        </van-grid-item>
+    </van-grid>
+</van-action-sheet>
+<!-- wxs -->
+<wxs src="../../utils/helper.wxs" module="helper" />

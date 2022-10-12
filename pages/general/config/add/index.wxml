@@ -1,0 +1,51 @@
+<include src="/pages/header.wxml" />
+<view class="container fixed-form-container">
+    <form id="form" class="form" bindsubmit="onSubmit" bindreset="onReset">
+        <van-cell-group>
+            <!-- 类型 -->
+            <input hidden name="type" model:value="{{ type }}" />
+            <van-field value="{{ typeTitle }}" label="类型" placeholder="请选择" size="large" bindtap="onOpenTypePicker" readonly is-link arrow-direction="down" />
+            <!-- 分组 -->
+            <input hidden name="group" model:value="{{ group }}" />
+            <van-field value="{{ groupTitle }}" label="分组" placeholder="请选择" size="large" bindtap="onOpenGroupPicker" readonly is-link arrow-direction="down" />
+            <!-- 变量名 变量标题 变量值-->
+            <van-field name="name" model:value="{{ name }}" label="变量名" placeholder="请输入" size="large" clearable />
+            <van-field name="title" model:value="{{ title }}" label="变量标题" placeholder="请输入" size="large" clearable />
+            <van-field name="value" model:value="{{ value }}" label="变量值" placeholder="请输入" size="large" clearable />
+            <!-- 数据列表 -->
+            <view class="van-hairline--bottom" wx:if="{{ type==='select'||type==='selects'||type==='radio'||type==='checkbox' }}">
+                <van-field name="content" model:value="{{ content }}" label="数据列表" placeholder="" size="large" clearable type="textarea" autosize="{{ {maxHeight: 100, minHeight: 50} }}" border="{{ false }}"/>
+                <view class="form-tips">当类型为checkbox/radio/select/selects时的配置项</view>
+            </view>
+            <!-- 提示信息 -->
+            <van-field name="tip" model:value="{{ tip }}" label="提示信息" placeholder="请输入" size="large" clearable />
+            <!-- 校验规则 -->
+            <view class="van-hairline--bottom">
+                <van-field model:value="{{ rule }}" name="rule" label="校验规则" placeholder="" size="large" bindtap="onOpenContentPicker" readonly is-link arrow-direction="down" border="{{ false }}"/>
+                <view class="form-tips">校验规则使用请参考Nice-validator文档</view>
+            </view>
+            <!-- 扩展属性 -->
+            <van-field name="extend" model:value="{{ extend }}" label="扩展属性" placeholder="" size="large" clearable type="textarea" autosize="{{ {maxHeight: 100, minHeight: 50} }}" border="{{ false }}" />
+            <view class="form-tips">扩展属性支持{id}、{name}、{group}、{title}、{value}、{content}、{rule}替换</view>
+        </van-cell-group>
+        <view class="form-actions">
+            <button form-type="reset" type="defalut" class="btn-reset">重置</button>
+            <button form-type="submit" type="primary" class="btn-submit" disabled="{{ submitDisabled || !type || !group || !name || !title || !content }}">
+                <view hidden="{{ !submiting }}" class="flex-center">
+                    <van-loading size="20px">提交中...</van-loading>
+                </view>
+            <view hidden="{{ submiting }}">确定</view>
+            </button>
+        </view>
+    </form>
+</view>
+<!-- 类型上拉菜单 -->
+<van-action-sheet show="{{ showTypePicker }}" description="请选择类型" close-on-click-overlay bind:close="onCloseTypePicker">
+    <van-picker class="picker-type" columns="{{ typeList }}" show-toolbar bind:cancel="onCloseTypePicker" bind:confirm="onConfirmTypePicker" />
+</van-action-sheet>
+<!-- 分组上拉菜单 -->
+<van-action-sheet show="{{ showGroupPicker }}" description="请选择分组" close-on-click-overlay bind:close="onCloseGroupPicker">
+    <van-picker class="picker-group" columns="{{ groupList }}" show-toolbar bind:cancel="onCloseGroupPicker" bind:confirm="onConfirmGroupPicker" />
+</van-action-sheet>
+<!-- 校验规则上拉菜单 -->
+<helper-popup-selects show="{{ showContentPicker }}" selects="{{ ruleList }}" close-on-click-overlay bind:close="onCloseContentPicker" description="请选择规则" scroll-height="70vh" bind:cancel="onCloseContentPicker" bind:confirm="onConfirmContentPicker" value="{{rule}}" class="selects-rule" />

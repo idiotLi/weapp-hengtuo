@@ -1,0 +1,89 @@
+@import '../../vant/common/index.wxss';
+
+.helper-popup-tree {
+    max-height: 100% !important;
+    max-height: var(--action-sheet-max-height, 100%) !important;
+    color: #323233;
+    color: var(--action-sheet-item-text-color, #323233);
+    background-color: whitesmoke;
+}
+
+.helper-popup-tree__header {
+    text-align: center;
+    font-weight: 500;
+    font-weight: var(--font-weight-bold, 500);
+    font-size: 16px;
+    font-size: var(--action-sheet-header-font-size, 16px);
+    line-height: 44px;
+    line-height: var(--action-sheet-header-height, 44px)
+}
+
+.helper-popup-tree__description {
+    text-align: center;
+    padding: 16px;
+    padding: var(--padding-md, 16px);
+    color: #646566;
+    color: var(--action-sheet-description-color, #646566);
+    font-size: 14px;
+    font-size: var(--action-sheet-description-font-size, 14px);
+    line-height: 20px;
+    line-height: var(--action-sheet-description-line-height, 20px)
+}
+
+.helper-popup-tree__close {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    line-height: inherit !important;
+    padding: 0 12px;
+    padding: var(--action-sheet-close-icon-padding, 0 12px);
+    font-size: 18px !important;
+    font-size: var(--action-sheet-close-icon-size, 18px) !important;
+    color: #969799;
+    color: var(--action-sheet-close-icon-color, #969799)
+}
+
+.helper-popup-tree__toolbar {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    height: 44px;
+    height: var(--picker-toolbar-height, 44px);
+    line-height: 44px;
+    line-height: var(--picker-toolbar-height, 44px)
+}
+
+.helper-popup-tree__reset,
+.helper-popup-tree__cancel,
+.helper-popup-tree__collapse,
+.helper-popup-tree__checkall,
+.helper-popup-tree__confirm {
+    flex: 1;
+    font-size: 16px;
+    padding: 0 16px;
+    padding: var(--picker-action-padding, 0 16px);
+    color: #1989fa;
+    color: var(--picker-action-text-color, #1989fa);
+    background-color: #fff;
+    line-height: 44px;
+    margin: 0;
+    text-align: center;
+}
+.helper-popup-tree__reset--hover,
+.helper-popup-tree__cancel--hover,
+.helper-popup-tree__collapse--hover,
+.helper-popup-tree__checkall--hover,
+.helper-popup-tree__confirm--hover {
+    background-color: #f2f3f5;
+    background-color: var(--picker-action-active-color, #f2f3f5)
+}
+
+.helper-popup-tree__title {
+    max-width: 50%;
+    text-align: center;
+    font-weight: 500;
+    font-weight: var(--font-weight-bold, 500);
+    font-size: 16px;
+    font-size: var(--picker-option-font-size, 16px)
+}

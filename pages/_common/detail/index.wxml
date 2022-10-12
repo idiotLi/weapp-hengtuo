@@ -1,0 +1,113 @@
+<include src="/pages/header.wxml" />
+<view class="container">
+    <form id="form" class="form">
+        <van-cell-group>
+            <van-cell wx:if="{{ !config.field[config.pk] && config.field[config.pk].viewable }}" title="{{ config.pk }}" size="large" value-class="cell-value">
+                <text selectable>{{ data[config.pk] }}</text>
+            </van-cell>
+            <block wx:for="{{ config.field }}" wx:key="index" wx:if="{{ item.viewable }}">
+                <!-- datetime -->
+                <block wx:if="{{ item.type === 'datetime' }}">
+                    <van-cell title="{{ item.label }}" size="large" value-class="cell-value">
+                        <text selectable>{{ helper.formatDate(data[index]) }}</text>
+                    </van-cell>
+                </block>
+                <!-- select,switch -->
+                <block wx:elif="{{ helper.inArray(item.type,['select','switch']) }}">
+                    <van-cell title="{{ item.label }}" size="large" value-class="cell-value">
+                        <text selectable>{{ helper.trim(helper.keyValue(config.fieldContent[index])[data[index]]) }}</text>
+                    </van-cell>
+                </block>
+                <!-- selects -->
+                <block wx:elif="{{ item.type === 'selects' }}">
+                    <van-cell title="{{ item.label }}" size="large" value-class="cell-value">
+                        <van-tag type="warning" wx:for="{{ helper.split(',',data[index]) }}" wx:key="label" wx:for-index="label" wx:for-item="value" plain round>{{ helper.trim(helper.keyValue(config.fieldContent[index])[value]) }}</van-tag>
+                    </van-cell>
+                </block>
+                <!-- radio -->
+                <block wx:elif="{{ item.type === 'radio' }}">
+                    <van-cell title="{{ item.label }}" size="large" value-class="cell-value">
+                        <text selectable>{{ config.fieldContent[index][data[index]] }}</text>
+                    </van-cell>
+                </block>
+                <!-- image -->
+                <block wx:elif="{{ item.type === 'image' }}">
+                    <van-cell title="{{ item.label }}" size="large">
+                        <view class="cell-value__image" wx:if="{{ data[index] }}">
+                            <van-image width="90" height="90" fit="contain" use-loading-slot src="{{ helper.isCdnurl(data[index]) ? data[index] : cdnurl + data[index] }}" catch:tap="onPreview" data-url="{{ helper.isCdnurl(data[index]) ? data[index] : cdnurl + data[index] }}">
+                                <van-loading slot="loading" type="circular" size="20" vertical />
+                            </van-image>
+                        </view>
+                    </van-cell>
+                </block>
+                <!-- images -->
+                <block wx:elif="{{ item.type === 'images' }}">
+                    <van-cell title="{{ item.label }}" size="large">
+                        <view class="cell-value__images" wx:if="{{ data[index] }}">
+                            <van-image wx:for="{{ helper.split(',',data[index]) }}" wx:for-item="image" wx:for-index="imageIndex" fit="contain" use-loading-slot src="{{ helper.isCdnurl(image) ? image : cdnurl + image }}" catch:tap="onPreview" data-url="{{ helper.isCdnurl(image) ? image : cdnurl + image }}" data-urls="{{ data[index] }}" custom-class="cell-value__images--item">
+                                <van-loading slot="loading" type="circular" size="20" vertical />
+                            </van-image>
+                        </view>
+                    </van-cell>
+                </block>
+                <!-- file -->
+                <block wx:elif="{{ item.type === 'file' }}">
+                    <van-cell title="{{ item.label }}" size="large">
+                        <view class="cell-value__image" wx:if="{{ data[index] }}">
+                            <van-image wx:if="{{ helper.isImage(data[index]) }}" width="90" height="90" lazy-load fit="contain" use-loading-slot src="{{ helper.isCdnurl(data[index]) ? data[index] : cdnurl + data[index] }}" catch:tap="onPreview" data-url="{{ helper.isCdnurl(data[index]) ? data[index] : cdnurl + data[index] }}">
+                                <van-loading slot="loading" type="circular" size="20" vertical />
+                            </van-image>
+                            <view wx:else>
+                                <view class="file-icon file-icon-xl" data-type="{{ helper.getFileSuffix(data[index]) }}" catch:tap="onPreview" data-url="{{ helper.isCdnurl(data[index]) ? data[index] : cdnurl + data[index] }}"></view>
+                            </view>
+                        </view>
+                    </van-cell>
+                </block>
+                <!-- files -->
+                <block wx:elif="{{ item.type === 'files' }}">
+                    <van-cell title="{{ item.label }}" size="large">
+                        <view class="cell-value__images" wx:if="{{ data[index] }}">
+                            <block wx:for="{{ helper.split(',',data[index]) }}" wx:for-item="file" wx:for-index="fileIndex" >
+                                <van-image wx:if="{{ helper.isImage(file) }}" fit="contain" use-loading-slot src="{{ helper.isCdnurl(file) ? file : cdnurl + file }}" catch:tap="onPreview" data-url="{{ helper.isCdnurl(file) ? file : cdnurl + file }}" data-urls="{{ data[index] }}" custom-class="cell-value__images--item">
+                                    <van-loading slot="loading" type="circular" size="20" vertical />
+                                </van-image>
+                                <view class="file-icon-warpper" wx:else>
+                                    <view class="file-icon file-icon-lg" data-type="{{ helper.getFileSuffix(file) }}" catch:tap="onPreview" data-url="{{ helper.isCdnurl(file) ? file : cdnurl + file }}"></view>
+                                </view>
+                            </block>
+                        </view>
+                    </van-cell>
+                </block>
+                <!-- editor -->
+                <block wx:elif="{{ item.type === 'editor' }}">
+                    <van-cell title="{{ item.label }}" size="large" value-class="cell-value">
+                        <towxml nodes="{{ editorData[index] }}"/>
+                    </van-cell>
+                </block>
+                <!-- ruletree -->
+                <block wx:elif="{{ item.type === 'ruletree' }}">
+                    <van-cell title="{{ item.label }}" size="large" value-class="cell-value" center>
+                        <van-button wx:if="{{ data['pid'] !== 0 }}" type="info" icon="cluster-o" size="small" data-index="{{ index }}" data-row="{{ data }}" data-type="{{ item.type }}" bind:click="showPopupTree">点击查看</van-button>
+                        <text selectable wx:else>{{ data[index] }}</text>
+                    </van-cell>
+                    <helper-popup-tree show="{{ showActionSheet[index] }}" show-toolbar="{{ true }}" tree="{{ tree[index] }}" active="{{ data[index] }}" value="{{ data[index] }}" bind:cancel="onCloseActionSheet" bind:close="onCloseActionSheet" description="查看{{ item.label }}" scroll-height="auto" class="tree-{{ index }}" data-index="{{ index }}" z-index="110" close-on-click-overlay read-only />
+                </block>
+                <!-- text -->
+                <block wx:else>
+                    <van-cell title="{{ item.label }}" size="large" value-class="cell-value">
+                        <text selectable>{{ data[index] !== null ? helper.trim(data[index]) : '' }}</text>
+                    </van-cell>
+                </block>
+            </block>
+        </van-cell-group>
+        <view class="action-bar" wx:if="{{ helper.authCheck(config.auth.edit.url,ruleList) && !hideEdit}}">
+            <view class="edit">
+                <button type="info" catchtap="edit">
+                    <view class="fa fa-pencil"></view> 编辑
+                </button>
+            </view>
+        </view>
+    </form>
+</view>
+<!-- wxs -->
+<wxs src="../../../utils/helper.wxs" module="helper" />

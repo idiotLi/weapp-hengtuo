@@ -1,0 +1,11 @@
+{
+    "usingComponents": {
+        "van-grid": "/components/vant/grid/index",
+        "van-grid-item": "/components/vant/grid-item/index"
+
+    },
+    "navigationBarTitleText": "控制台",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+}

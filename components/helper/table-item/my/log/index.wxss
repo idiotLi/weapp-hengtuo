@@ -1,0 +1,30 @@
+@import '../../../../vant/common/index.wxss';
+.list-cell {
+    display: flex;
+    text-align: left;
+    width: 100%;
+    margin-top: 4px;
+}
+.table-item__title {
+    text-align: left;
+    font-weight: bold;
+    padding-bottom: 6px;
+}
+.table-item-detail {
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.table-item__row {
+    display: flex;
+    justify-content: start;
+}
+.table-item__row .label {
+    color: gray;
+    white-space: nowrap;
+}
+.table-item__row .value {
+    margin-left: 4px;
+}

@@ -1,0 +1,115 @@
+<include src="/pages/header.wxml" />
+<view class="main-container" style="height:{{ windowHeight }}px">
+    <view class="title">{{ data.title }}</view>
+    <view class="intro">{{ data.intro }}</view>
+    <view class="screenshots" wx:if="{{ data.screenshots.length }}">
+        <swiper class="screenshots-swiper" indicator-dots="{{ true }}" autoplay="{{ true }}" interval="{{ 4000 }}" duration="{{ 500 }}" indicator-dots="{{ false }}" indicator-active-color="#fff">
+            <block wx:for="{{ data.screenshots }}" wx:key="*this">
+                <swiper-item>
+                    <van-image custom-class="screenshots-image" image-class="screenshots-image__image" width="100%" height="200" radius="4" lazy-load src="{{ item }}" fit="contain" data-url="{{ item }}" bind:click="onPreview" use-loading-slot>
+                        <van-loading slot="loading" type="circular" size="20" vertical />
+                    </van-image>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <van-grid column-num="2" custom-class="grid-info" border="{{ false }}">
+        <van-grid-item icon="user-o">
+            <view slot="text" class="grid-info-text">
+                <view class="grid-info-text__label">作者</view>
+                <view class="grid-info-text__value" style="color:#ffd21e">{{ data.author }}</view>
+            </view>
+        </van-grid-item>
+        <van-grid-item icon="star-o">
+            <view slot="text" class="grid-info-text">
+                <view class="grid-info-text__label">评级</view>
+                <van-rate readonly size="14px" value="{{ data.score }}" />
+            </view>
+        </van-grid-item>
+    </van-grid>
+    <block wx:if="{{ data.local && (helper.authCheck(config.auth.state.url,ruleList) || (helper.authCheck(config.auth.config.url,ruleList)) && data.local.config) }}">
+        <van-divider content-position="center" custom-style="color:#fff;font-size:16px" hairline>管理插件</van-divider>
+        <view class="manage">
+            <view class="state" wx:if="{{ helper.authCheck(config.auth.state.url,ruleList) }}">
+                <view class="manage-label">状态</view>
+                <view class="manage-btn">
+                    <van-switch checked="{{ data.local.state === '1' }}" inactive-color="whitesmoke" bind:change="onStateChange" />
+                </view>
+            </view>
+            <view class="config" wx:if="{{ data.local.config && helper.authCheck(config.auth.config.url,ruleList) }}">
+                <view class="manage-label">配置</view>
+                <view class="manage-btn">
+                    <van-button type="primary" size="small" icon="setting-o" custom-style="height:32px" round bind:click="openAddonConfig" data-name="{{ data.name }}">修改配置</van-button>
+                </view>
+            </view>
+        </view>
+        <view class="manage-tips">插件的安装、卸载与更新请在电脑端操作。</view>
+    </block>
+    <view class="actions">
+        <view wx:if="{{ data.demourl }}" class="btn-demourl">
+            <van-button type="default" data-url="{{ data.demourl }}" block bind:click="onHomepageClick">复制插件演示链接</van-button>
+        </view>
+        <view class="btn-url">
+            <van-button type="primary" data-url="{{ data.url }}" block bind:click="onHomepageClick">复制插件主页链接</van-button>
+        </view>
+    </view>
+    <van-divider content-position="center" custom-style="color:#fff;font-size:16px" hairline>插件价格</van-divider>
+    <van-grid column-num="2" custom-class="grid-info" border="{{ false }}">
+        <van-grid-item icon="diamond-o" icon-class="grid-info-authorize__icon">
+            <view slot="text" class="grid-info-authorize">
+                <view class="grid-info-authorize__label">基础授权</view>
+                <view class="{{ data.price === '0.00' ? 'grid-info-authorize__value__free' : 'grid-info-authorize__value' }}">{{ data.price === '0.00' ? '免费' : data.price }}</view>
+                <view wx:if="{{ data.price !== data.originalprice }}" class="grid-info-authorize__original">{{ data.originalprice }}</view>
+            </view>
+        </van-grid-item>
+        <van-grid-item icon="gem-o" icon-class="grid-info-authorize__icon">
+            <view slot="text" class="grid-info-authorize">
+                <view class="grid-info-authorize__label">高级授权</view>
+                <view class="{{ data.extendedprice === '0.00' ? 'grid-info-authorize__value__free' : 'grid-info-authorize__value' }}">{{ data.extendedprice === '0.00' ? ' 免费' : data.extendedprice }}</view>
+                <view wx:if="{{ data.extendedprice !== data.originalextendedprice }}" class="grid-info-authorize__original">{{ data.originalextendedprice }}</view>
+            </view>
+        </van-grid-item>
+    </van-grid>
+    <van-divider content-position="center" custom-style="color:#fff;font-size:16px" hairline>插件信息</van-divider>
+    <van-grid column-num="3" custom-class="grid-info" border="{{ false }}">
+        <van-grid-item icon="label-o">
+            <view slot="text" class="grid-info-text">
+                <view class="grid-info-text__label">插件标识</view>
+                <view class="grid-info-text__value">{{ data.name }}</view>
+            </view>
+        </van-grid-item>
+        <van-grid-item icon="apps-o">
+            <view slot="text" class="grid-info-text">
+                <view class="grid-info-text__label">插件分类</view>
+                <view class="grid-info-text__value">{{ data.category_id != 0 ? helper.keyValue(config.fieldContent.category)[data.category_id] : '未归类' }}</view>
+            </view>
+        </van-grid-item>
+        <van-grid-item icon="down">
+            <view slot="text" class="grid-info-text">
+                <view class="grid-info-text__label">下载次数</view>
+                <view class="grid-info-text__value">{{ data.downloads ? data.downloads : '未知' }}</view>
+            </view>
+        </van-grid-item>
+        <van-grid-item icon="setting-o">
+            <view slot="text" class="grid-info-text">
+                <view class="grid-info-text__label">版本号</view>
+                <view class="grid-info-text__value">{{ data.version }}</view>
+            </view>
+        </van-grid-item>
+        <van-grid-item icon="clock-o">
+            <view slot="text" class="grid-info-text">
+                <view class="grid-info-text__label">发布日期</view>
+                <view class="grid-info-text__value">{{ data.releasetime ? helper.formatDate(data.releasetime,'yyyy-MM-dd') : '未知' }}</view>
+            </view>
+        </van-grid-item>
+        <van-grid-item icon="like-o">
+            <view slot="text" class="grid-info-text">
+                <view class="grid-info-text__label">被赞</view>
+                <view class="grid-info-text__value">{{ data.likes ? data.likes : 0 }}次</view>
+            </view>
+        </van-grid-item>
+    </van-grid>
+    
+</view>
+<!-- wxs -->
+<wxs src="../../../utils/helper.wxs" module="helper" />

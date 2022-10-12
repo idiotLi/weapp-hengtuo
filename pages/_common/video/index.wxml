@@ -1,0 +1,4 @@
+<include src="/pages/header.wxml" />
+<view class="video-container">
+    <video id="myVideo" title="{{ src }}" src="{{ src }}" controls autoplay show-mute-btn enable-play-gesture enable-auto-rotation play-btn-position="center"  show-screen-lock-button></video>
+</view>

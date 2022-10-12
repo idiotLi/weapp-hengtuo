@@ -1,0 +1,82 @@
+<van-cell border="{{ false }}" custom-class="list-cell" clickable bind:click="onClickCell" data-data="{{ item }}" data-index="{{ item.id }}">
+    <view class="table-item">
+        <view class="table-item__image">
+            <block wx:if="{{ item.avatar }}">
+                <van-image width="50" height="50" lazy-load fit="cover" use-loading-slot src="{{ helper.isCdnurl(item.avatar) ? item.avatar : cdnurl + item.avatar }}" catch:tap="onPreview" data-url="{{ helper.isCdnurl(item.avatar ? item.avatar : '/assets/img/avatar.png') ? item.avatar : cdnurl + item.avatar }}" round>
+                    <van-loading slot="loading" type="circular" size="20" vertical />
+                </van-image>
+            </block>
+            <block wx:else>
+                <van-image width="50" height="50" lazy-load fit="cover" use-loading-slot src="{{ cdnurl + '/assets/img/avatar.png' }}" round>
+                    <van-loading slot="loading" type="circular" size="20" vertical />
+                </van-image>
+            </block>
+            <view class="table-item__id">
+                <view>ID:{{ item.id }}</view>
+            </view>
+        </view>
+        <view class="table-item-main">
+            <view class="table-item__title van-hairline--bottom">
+                <view class="name">{{ item.username }}</view>
+                <view class="status">
+                    <van-tag type="status-{{ item.status }}" size="medium">{{ config.fieldContent.status[item.status] }}</van-tag>
+                </view>
+            </view>
+            <view class="table-item-detail">
+                <view class="table-item__row van-ellipsis">
+                    <view class="table-item__item">
+                        <view class="label">昵称:</view>
+                        <view class="value">{{ item.nickname }}</view>
+                    </view>
+                    <view class="table-item__item">
+                        <view class="label">角色组:</view>
+                        <view class="value">{{ item.group.name }}</view>
+                    </view>
+                </view>
+                <view class="table-item__row van-ellipsis">
+                    <view class="table-item__item">
+                        <view class="label">Email:</view>
+                        <view class="value">{{ item.email }}</view>
+                    </view>
+                    <view class="table-item__item">
+                        <view class="label">手机号:</view>
+                        <view class="value">{{ item.mobile }}</view>
+                    </view>
+                </view>
+                <view class="table-item__row van-ellipsis">
+                    <view class="table-item__item">
+                        <view class="label">等级:</view>
+                        <view class="value">{{ item.level }}</view>
+                    </view>
+                    <view class="table-item__item">
+                        <view class="label">积分:</view>
+                        <view class="value">{{ item.score }}</view>
+                    </view>
+                </view>
+                <view class="table-item__row van-ellipsis">
+                    <view class="table-item__item">
+                        <view class="label">登录时间:</view>
+                        <view class="value">{{ helper.formatDate(item.logintime,'yyyy-MM-dd') }}</view>
+                    </view>
+                    <view class="table-item__item">
+                        <view class="label">登录IP:</view>
+                        <view class="value">{{ item.loginip }}</view>
+                    </view>
+                </view>
+                <view class="table-item__row van-ellipsis">
+                    <view class="table-item__item">
+                        <view class="label">加入时间:</view>
+                        <view class="value">{{ helper.formatDate(item.jointime,'yyyy-MM-dd') }}</view>
+                    </view>
+                    <view class="table-item__item">
+                        <view class="label">加入IP:</view>
+                        <view class="value">{{ item.joinip }}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</van-cell>
+<!-- wxs -->
+<wxs src="../../../../vant/wxs/utils.wxs" module="utils" />
+<wxs src="../../../../../utils/helper.wxs" module="helper" />

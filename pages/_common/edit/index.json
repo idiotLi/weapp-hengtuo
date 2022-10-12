@@ -1,0 +1,7 @@
+{
+    "usingComponents": {},
+    "navigationBarBackgroundColor": "#2c3e50",
+    "navigationBarTitleText": "编辑",
+    "enablePullDownRefresh": false,
+    "disableScroll": false
+}

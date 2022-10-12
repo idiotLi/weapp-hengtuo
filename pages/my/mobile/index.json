@@ -1,0 +1,7 @@
+{
+    "usingComponents": {},
+    "navigationBarBackgroundColor": "#2c3e50",
+    "navigationBarTitleText": "修改手机绑定",
+    "enablePullDownRefresh": false,
+    "disableScroll": false
+}

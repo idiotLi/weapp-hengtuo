@@ -1,0 +1,17 @@
+@import '../../vant/common/index.wxss';
+
+.tree-collapse-item {
+    margin-bottom: 4px;
+}
+.tree-collapse-item-title {
+    font-weight: bold;
+    display: flex;
+}
+.tree-check-group {
+    display: inline-block;
+}
+.tree-check {
+    padding: 0 12px 6px 0;
+    --checkbox-label-margin: 4px;
+    /* margin-right: 12px; */
+}

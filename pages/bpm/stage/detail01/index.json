@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/components/helper/table-item/bpm/stagedetail/index"
+    },
+    "navigationBarTitleText": "印染-批次管理",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

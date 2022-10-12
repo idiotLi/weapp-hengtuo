@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/addons/components/helper/table-item/helper/user/index"
+    },
+    "navigationBarTitleText": "用户管理",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

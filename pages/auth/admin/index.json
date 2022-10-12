@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/components/helper/table-item/auth/admin/index"
+    },
+    "navigationBarTitleText": "管理员管理",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

@@ -1,0 +1,9 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/components/helper/table-item/addon/index"
+    },
+    "navigationBarTitleText": "插件管理",
+    "navigationBarBackgroundColor": "#605ca8",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

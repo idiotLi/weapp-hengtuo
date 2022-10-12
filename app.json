@@ -1,0 +1,134 @@
+{
+    "pages": [
+        "pages/login/index",
+        "pages/login/mobile/index",
+        "pages/login/username/index",
+        "pages/login/bind_mobile/index",
+        "pages/login/bind_username/index",
+        "pages/dashboard/index",
+        "pages/manage/index",
+        "pages/category/index",
+        "pages/addon/index",
+        "pages/addon/detail/index",
+        "pages/addon/config/index",
+        "pages/general/config/index",
+        "pages/general/config/add/index",
+        "pages/general/attachment/index",
+        "pages/general/attachment/add/index",
+        "pages/user/user/index",
+        "pages/user/rule/index",
+        "pages/user/group/index",
+        "pages/auth/rule/index",
+        "pages/auth/group/index",
+        "pages/auth/adminlog/index",
+        "pages/auth/admin/index",
+        "pages/my/index",
+        "pages/my/log/index",
+        "pages/my/edit/index",
+        "pages/my/mobile/index",
+        "pages/my/wechat/index",
+        "pages/_common/list/index",
+        "pages/_common/video/index",
+        "pages/_common/editor/index",
+        "pages/_common/edit_value/index",
+        "pages/_common/detail/index",
+        "pages/_common/edit/index",
+        "pages/_common/add/index",
+        "components/helper/table-item/bpm/stage/index",
+        "pages/bpm/stage/list01/index",
+        "pages/order/index",
+        "pages/bpm/stage/detail01/index"
+    ],
+    "subpackages": [
+        {
+            "root": "addons",
+            "pages": [
+                "pages/helper/user/index",
+                "pages/helper/userlog/index",
+                "pages/helper/menu/index"
+            ]
+        }
+    ],
+    "tabBar": {
+        "color": "#2c3e50",
+        "selectedColor": "#18bc9c",
+        "list": [
+            {
+                "pagePath": "pages/dashboard/index",
+                "text": "首页",
+                "iconPath": "static/img/dashboard.png",
+                "selectedIconPath": "static/img/dashboard_active.png"
+            },
+            {
+                "pagePath": "pages/manage/index",
+                "text": "管理",
+                "iconPath": "static/img/index.png",
+                "selectedIconPath": "static/img/index_active.png"
+            },
+            {
+                "pagePath": "pages/my/index",
+                "text": "我的",
+                "iconPath": "static/img/my.png",
+                "selectedIconPath": "static/img/my_active.png"
+            }
+        ]
+    },
+    "usingComponents": {
+        "towxml": "/towxml/towxml",
+        "ec-canvas": "/components/ec-canvas/ec-canvas",
+        "van-count-down": "/components/vant/count-down/index",
+        "van-sticky": "/components/vant/sticky/index",
+        "van-divider": "/components/vant/divider/index",
+        "van-icon": "/components/vant/icon/index",
+        "van-toast": "/components/vant/toast/index",
+        "van-notify": "/components/vant/notify/index",
+        "van-dialog": "/components/vant/dialog/index",
+        "van-loading": "/components/vant/loading/index",
+        "van-button": "/components/vant/button/index",
+        "van-image": "/components/vant/image/index",
+        "van-field": "/components/vant/field/index",
+        "van-row": "/components/vant/row/index",
+        "van-col": "/components/vant/col/index",
+        "van-cell": "/components/vant/cell/index",
+        "van-cell-group": "/components/vant/cell-group/index",
+        "van-tab": "/components/vant/tab/index",
+        "van-tabs": "/components/vant/tabs/index",
+        "van-action-sheet": "/components/vant/action-sheet/index",
+        "van-popup": "/components/vant/popup/index",
+        "van-checkbox": "/components/vant/checkbox/index",
+        "van-checkbox-group": "/components/vant/checkbox-group/index",
+        "van-radio": "/components/vant/radio/index",
+        "van-radio-group": "/components/vant/radio-group/index",
+        "van-picker": "/components/vant/picker/index",
+        "van-datetime-picker": "/components/vant/datetime-picker/index",
+        "van-uploader": "/components/vant/uploader/index",
+        "van-switch": "/components/vant/switch/index",
+        "van-swipe-cell": "/components/vant/swipe-cell/index",
+        "van-tag": "/components/vant/tag/index",
+        "van-dropdown-menu": "/components/vant/dropdown-menu/index",
+        "van-dropdown-item": "/components/vant/dropdown-item/index",
+        "van-search": "/components/vant/search/index",
+        "van-panel": "/components/vant/panel/index",
+        "van-collapse": "/components/vant/collapse/index",
+        "van-collapse-item": "/components/vant/collapse-item/index",
+        "van-transition": "/components/vant/transition/index",
+        "helper-popup-selects": "/components/helper/popup-selects/index",
+        "helper-popup-filter": "/components/helper/popup-filter/index",
+        "helper-popup-tree": "/components/helper/popup-tree/index",
+        "helper-table": "/components/helper/table/index"
+    },
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#18bc9c",
+        "navigationBarTextStyle": "white",
+        "enablePullDownRefresh": false,
+        "navigationBarTitleText": ""
+    },
+    "sitemapLocation": "sitemap.json",
+    "networkTimeout": {
+        "request": 10000,
+        "downloadFile": 10000,
+        "connectSocket": 10000,
+        "uploadFile": 10000
+    }
+}
