@@ -4,7 +4,7 @@
         "van-grid-item": "/components/vant/grid-item/index"
 
     },
-    "navigationBarTitleText": "控制台",
+    "navigationBarTitleText": "平台首页",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true

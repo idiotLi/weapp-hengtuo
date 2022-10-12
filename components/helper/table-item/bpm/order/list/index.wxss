@@ -1,4 +1,4 @@
-@import '../../../../vant/common/index.wxss';
+@import '../../../../../vant/common/index.wxss';
 .list-cell {
     display: flex;
     text-align: left;

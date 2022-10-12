@@ -22,18 +22,7 @@
     </view>
     <view class="banner-warpper">
         <view class="banner">
-
-            <view class="avatar">
-                <van-image round width="120rpx" height="120rpx" fit="cover" src="{{ userInfo ? cdnurl + userInfo.avatar : '' }}" bind:click="updateAvatar" use-loading-slot lazy-load>
-                    <van-loading slot="loading" size="20" vertical />
-                </van-image>
-            </view>
-
             <view class="left">
-                <view class="nickname">
-                {{ userInfo.nickname ? userInfo.nickname : userInfo.username }}
-                </view>
-                
                 <view class="group">
                     {{ userInfo.group[0].name }}
                 </view>
@@ -103,7 +92,7 @@
     </view> -->
     <view class="actions">
         <view class="contact">
-            <van-button type="default" icon="contact" open-type="contact" block>联系助手</van-button>
+            <van-button type="default" icon="contact" open-type="contact" block>联系客服</van-button>
         </view>
         <view class="logout">
             <van-button type="default" icon="replay" bind:tap="logout" block>注销登录</van-button>

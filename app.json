@@ -36,8 +36,9 @@
         "pages/_common/add/index",
         "components/helper/table-item/bpm/stage/index",
         "pages/bpm/stage/list01/index",
-        "pages/order/index",
-        "pages/bpm/stage/detail01/index"
+        "pages/bpm/stage/detail01/index",
+        "pages/bpm/order/list/index",
+        "pages/bpm/order/detail/index"
     ],
     "subpackages": [
         {
@@ -55,19 +56,19 @@
         "list": [
             {
                 "pagePath": "pages/dashboard/index",
-                "text": "首页",
+                "text": "首页看板",
                 "iconPath": "static/img/dashboard.png",
                 "selectedIconPath": "static/img/dashboard_active.png"
             },
             {
                 "pagePath": "pages/manage/index",
-                "text": "管理",
+                "text": "管理模块",
                 "iconPath": "static/img/index.png",
                 "selectedIconPath": "static/img/index_active.png"
             },
             {
                 "pagePath": "pages/my/index",
-                "text": "我的",
+                "text": "我的资料",
                 "iconPath": "static/img/my.png",
                 "selectedIconPath": "static/img/my_active.png"
             }

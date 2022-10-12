@@ -35,11 +35,12 @@
         "showES6CompileOption": false,
         "disableUseStrict": false,
         "useCompilerPlugins": false,
-        "minifyWXML": true
+        "minifyWXML": true,
+        "compileHotReLoad": true
     },
     "compileType": "miniprogram",
     "libVersion": "2.11.1",
-    "appid": "wxc44fdadfd2d71325",
+    "appid": "wx2b6324ef0572e158",
     "projectname": "helper-release",
     "simulatorType": "wechat",
     "simulatorPluginLibVersion": {},

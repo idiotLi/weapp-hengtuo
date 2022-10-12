@@ -1,4 +1,4 @@
-<van-cell border="{{ false }}" custom-class="list-cell"  clickable bind:click="onClickCell" data-data="{{ item }}" data-index="{{ item.id }}">
+<van-cell border="{{ false }}" custom-class="list-cell"  >
     <view class="table-item">
         <view class="table-item__image">
             <block wx:if="{{ item.productimage }}">
@@ -12,11 +12,19 @@
                 </van-image>
             </block>
         </view>
-        <view class="table-item-main" clickable bind:click="onClickCell" data-data="{{ item }}" data-index="{{ item.id }}">
+        <view class="table-item-main" >
             <view class="table-item__title van-hairline--bottom">
                 <view class="name">序号：{{ item.id }}</view>
                 <view class="operate">
-                
+
+
+
+
+                    <van-button type="info" plain round hairline size="mini" clickable bind:click="onClickCell" data-data="{{ item }}" data-index="{{ item.id }}"  >批次管理</van-button>
+
+                    <van-button type="danger" plain round hairline size="mini"  >审核</van-button>
+
+
                 </view>
                 <view class="status">
                     <van-tag type="status-{{ item.status01 }}" size="">{{ config.fieldContent.status01[item.status01] }}</van-tag>

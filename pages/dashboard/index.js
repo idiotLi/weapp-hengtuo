@@ -319,6 +319,11 @@ Page({
     showDiyToast() {
         wx.vantToast.success('跳转你的页面')
     },
+    showorderlist() {
+        wx.navigateTo({
+          url: '/pages/bpm/order/list/index',
+        })
+    },
     showyinranlist() {
         wx.navigateTo({
           url: '/pages/bpm/stage/list01/index',

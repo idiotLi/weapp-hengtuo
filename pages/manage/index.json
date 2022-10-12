@@ -3,7 +3,7 @@
         "van-grid": "/components/vant/grid/index",
         "van-grid-item": "/components/vant/grid-item/index"
     },
-    "navigationBarTitleText": "管理",
+    "navigationBarTitleText": "管理页面",
     "enablePullDownRefresh": false,
     "disableScroll": true
 }

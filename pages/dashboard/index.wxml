@@ -4,33 +4,6 @@
 </view>
 <block wx:if="{{ _ready }}">
 
-    <view class="banner-warpper">
-        <view class="banner">
-
-            <view class="left">
-                <van-image round width="120rpx" height="120rpx" fit="cover" src="{{ userInfo ? cdnurl + userInfo.avatar : '' }}" bind:click="updateAvatar" use-loading-slot lazy-load>
-                    <van-loading slot="loading" size="20" vertical />
-                </van-image>
-            </view>
-
-            <view class="mid">
-                <view class="nickname">
-                    刘军
-                    <!-- {{ userInfo.nickname ? userInfo.nickname : userInfo.username }} -->
-                </view>
-
-                <view class="group">部门：菜刀组
-                    <!-- {{ userInfo.group[0].name }} -->
-                </view>
-                <!-- <view class="join">
-                    加入时间：{{ helper.formatDate(userInfo.createtime, 'yyyy-MM-dd') }}
-                </view> -->
-            </view>
-            <view class="right">
-                <van-button open-type="feedback" type="default" size="small" round>注销</van-button>
-            </view>
-        </view>
-    </view>
 
     <view class="container">
         <view class="title">数据看板</view>

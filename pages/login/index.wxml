@@ -1,10 +1,10 @@
 <include src="/pages/header.wxml"/>
 <view class="container">
     <view class="logo">
-        <i class="fa fa-flash fa-5x"></i>
+        <i class="fa fa-binoculars fa-5x"></i>
     </view>
     <view class="site-name">
-        恒拓跟单系统
+        特顺ERP
         <view class="text-tips">用手机管理你的工作流</view>
     </view>
     <view class="loading" wx:if="{{ showLoading }}">
