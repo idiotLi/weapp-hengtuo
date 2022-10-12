@@ -1,3 +1,8 @@
 {
-    "usingComponents": {}
+    "usingComponents": {
+        "helper-table-item": "/components/helper/table-item/bpm/product/list/index"
+    },
+    "navigationBarTitleText": "款式管理",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
 }

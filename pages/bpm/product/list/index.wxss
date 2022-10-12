@@ -1,1 +1,3 @@
-/* pages/bpm/product/list/index.wxss */
+page {
+    background-color: whitesmoke;
+}

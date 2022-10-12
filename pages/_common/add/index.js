@@ -82,7 +82,7 @@ Page({
             message: '提交中...'
         })
         wx.wxRequest.post(
-            that.data.config.auth.add.url, e.detail.value
+            that.data.config.auth.add.url_weapp, e.detail.value
         ).then(function (res) {
             if (res) {
                 // 刷新列表页数据

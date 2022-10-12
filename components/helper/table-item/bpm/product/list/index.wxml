@@ -1,0 +1,52 @@
+<van-cell border="{{ false }}" custom-class="list-cell"  data-data="{{ item }}" data-index="{{ item.id }}">
+    <view class="table-item">
+        <view wx:if="{{ config.list.imageField }}" class="table-item__image">
+            <van-image width="50" height="50" lazy-load fit="cover" use-loading-slot src="{{ helper.isCdnurl(item[config.list.imageField]) ? item[config.list.imageField] : cdnurl + item[config.list.imageField] }}" catch:tap="onPreview" data-url="{{ helper.isCdnurl(item[config.list.imageField]) ? item[config.list.imageField] : cdnurl + item[config.list.imageField] }}" data-field="{{ config.list.imageField }}" round="{{ helper.endsWith(config.list.imageField,'avatar') }}" use-error-slot>
+                <van-icon name="photo-o" slot="error"/>
+                <van-loading slot="loading" type="circular" size="20" vertical />
+            </van-image>
+            <view wx:if="{{ helper.inArray(config.pk, config.list.field) }}" class="table-item__id">
+                <view>UID:{{ item.id }}</view>
+            </view>
+        </view>
+        <view class="table-item-main" >
+            <view class="table-item__title van-hairline--bottom">
+                <view class="name">款号：{{ item.productserial }}</view>
+                <view class="operate">
+                
+                </view>
+                <!-- <view class="status"  >
+                    <van-tag type="status-{{ item.status01 }}" 
+                    size="">{{ config.fieldContent.status01[item.status01] }}</van-tag>
+                </view> -->
+            </view>
+            <view class="table-item-detail">
+                <view class="table-item__row">
+                    <view class="table-item__item">
+                        <view class="label">颜色:</view>
+                        <view class="value">{{ item.productcolor }}</view>
+                    </view>
+                    <view class="table-item__item">
+                        <view class="label">大小:</view>
+                        <view class="value">{{ item.productsize }}</view>
+                    </view>
+                </view>
+                <view class="table-item__row">
+                    <view class="table-item__item">
+                        <view class="label">材质:</view>
+                        <view class="value">{{ item.productelement }}</view>
+                    </view>
+                </view>
+                <view class="table-item__row">
+                    <view class="table-item__item">
+                        <view class="label">供应商:</view>
+                        <view class="value">{{ item.productor }}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</van-cell>
+<!-- wxs -->
+<wxs src="../../../../../vant/wxs/utils.wxs" module="utils" />
+<wxs src="../../../../../../utils/helper.wxs" module="helper" />
