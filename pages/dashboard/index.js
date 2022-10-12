@@ -328,5 +328,10 @@ Page({
         wx.navigateTo({
           url: '/pages/bpm/stage/list01/index',
         })
+    },
+    showproductlist() {
+        wx.navigateTo({
+          url: '/pages/bpm/product/list/index',
+        })
     }
 })

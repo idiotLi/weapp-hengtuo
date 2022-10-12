@@ -44,7 +44,7 @@
 
     <view class="mytool">
         <view class="item1">
-            <van-button type="default" icon="contact" open-type="contact" block>产品管理</van-button>
+            <van-button type="default" bind:click="showproductlist" icon="contact"  block>产品管理</van-button>
         </view>
         <view class="item2">
             <van-button type="default" icon="replay" bind:tap="logout" block>订单查询</van-button>

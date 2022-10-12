@@ -1,4 +1,4 @@
-// pages/order/index.js
+// pages/bpm/product/list/index.js
 Page({
 
     /**
