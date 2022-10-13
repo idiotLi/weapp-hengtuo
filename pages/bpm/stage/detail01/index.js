@@ -6,13 +6,17 @@ Page({
         // source: 'bpm/stage01'
         source: 'bpm.stage01details/index',
         ids : '',
-        stage : ''
+        index1 : '',
+        index2 : '',
+        index2 : ''
         
     },
     onLoad: function (options) {
         this.setData ({
             ids: options.ids,
-            stage : options.stage
+            index1 : options.index1,
+            index2 : options.index2,
+            index3 : options.index3
         })
         
     },

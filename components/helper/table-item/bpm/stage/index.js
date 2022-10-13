@@ -35,7 +35,7 @@ VantComponent({
             wx.navigateTo({
                 // url: `/pages/_common/detail/index?data=${app.utils.encodeParam(e.detail.row)}&config=${app.utils.encodeParam(that.data._config)}`,
                 // url: `/pages/bpm/stage/detail01/index?ids=420&stage=1`,
-                url: `/pages/bpm/stage/detail01/index?ids=${e.currentTarget.dataset.index}&stage=1`,
+                url: `/pages/bpm/stage/detail01/index?ids=${e.currentTarget.dataset.index}&index1=${e.currentTarget.dataset.index1}&index2=${e.currentTarget.dataset.index2}&index3=${e.currentTarget.dataset.index3}`,
             })
         },
         // 预览图片

@@ -13,9 +13,17 @@ VantComponent({
             type:String,
             value:420
         },
-        stage:{
+        index1:{
             type:String,
-            value:1
+            value:0
+        },
+        index2:{
+            type:String,
+            value:0
+        },
+        index3:{
+            type:String,
+            value:0
         },
         search: {
             type: Boolean,
@@ -97,7 +105,9 @@ VantComponent({
                     'op': JSON.stringify(that.data._op),
                     'search': that.data._search,
                     'ids':that.data.ids,
-                    'stage': that.data.stage
+                    'index1': that.data.index1,
+                    'index2': that.data.index2,
+                    'index3': that.data.index3
                 }
             ).then(function (res) {
                 if (res) {
@@ -424,6 +434,7 @@ VantComponent({
         // 添加
         onAddClick() {
             let that = this
+            // console.log(that.date._config)
             wx.navigateTo({
                 // 打开自定义add页
                 url: `add/index?config=${app.utils.encodeParam(that.data._config)}`,
