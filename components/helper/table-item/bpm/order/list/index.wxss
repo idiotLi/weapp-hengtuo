@@ -10,24 +10,21 @@
 }
 .table-item__image {
     margin-top: 6px;
-    margin-right: 6px;
+    margin-right: 16px;
 }
 .table-item-main {
     width: 100%;
 }
 .table-item__title {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
 .table-item__title .name {
     text-align: left;
     font-weight: bold;
     padding-bottom: 6px;
 }
-/* .table-item__title .status {
-    position: absolute;
-    right: 0;
-} */
+
 .table-item-detail {
     margin-top: 8px;
     font-size: 11px;
