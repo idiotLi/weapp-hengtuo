@@ -39,7 +39,9 @@
         "pages/bpm/stage/detail01/index",
         "pages/bpm/order/list/index",
         "pages/bpm/order/detail/index",
-        "pages/bpm/product/list/index"
+        "pages/bpm/product/list/index",
+        "pages/manage/todolist/index",
+        "pages/manage/todolistdetail/index"
     ],
     "subpackages": [
         {

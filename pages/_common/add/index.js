@@ -8,6 +8,8 @@ Page({
         tree: {},
         config: {},
         value: {},
+        orders_id:0,
+        orderproducts_idd:0,
     },
     onLoad: function (options) {
         const config = app.utils.decodeParam(options.config)
@@ -47,9 +49,14 @@ Page({
                 config.rules[field].required = config.rules[field].required === 'add' || config.rules[field].required === true ? true : false
             }
         }
+        var pages = getCurrentPages();
+        var prevpage = pages[pages.length -2];
+        
         this.setData({
             cdnurl: wx.getStorageSync('config')['upload']['cdnurl'],
-            config: config
+            config: config,
+            orders_id:prevpage.options.index2,
+            orderproducts_idd:prevpage.options.index1,
         })
         this.initValidate()
     },
@@ -81,6 +88,7 @@ Page({
             forbidClick: true,
             message: '提交中...'
         })
+        console.log(e.detail.value);
         wx.wxRequest.post(
             that.data.config.auth.add.url_weapp, e.detail.value
         ).then(function (res) {

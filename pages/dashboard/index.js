@@ -14,6 +14,7 @@ Page({
     },
     data: {
         _ready: false,
+        _ruleList:[],
         activeTab: null,
         ecOrder: {
             lazyLoad: true
@@ -36,8 +37,10 @@ Page({
             if (res) {
                 that.setData({
                     ...res.data,
-                    _ready: true
+                    _ready: true,
+                    _ruleList: wx.getStorageSync('ruleList')
                 })
+                
                 that.initChart('#ec-order', 'ecOrder')
                 setTimeout(() => {
                     if (!that.data.activeTab) {
@@ -333,5 +336,11 @@ Page({
         wx.navigateTo({
           url: '/pages/bpm/product/list/index',
         })
+    },
+    showmanagetodolist() {
+        wx.navigateTo({
+          url: '/pages/manage/todolist/index',
+        })
     }
+    
 })

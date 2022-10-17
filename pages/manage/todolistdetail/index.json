@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/components/helper/table-item/manage/todolist/detail/index"
+    },
+    "navigationBarTitleText": "任务进度-上报列表",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

@@ -155,6 +155,12 @@
                     <van-field label="{{ item.label }}" name="{{ index }}" value="{{ value[index] }}" placeholder="请输入" size="large" data-index="{{ index }}" type="text" cursor-spacing="10" bind:blur="onFieldBlur" bind:focus="onFieldFocus" bind:change="onFieldChange" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" clearable />
                 </block>
             </block>
+
+            <!-- <input name="{{ orders_id }}" value="{{ orders_id }}" hidden />
+            <input name="{{ orderproducts_idd }}" value="{{ orderproducts_idd }}" hidden /> -->
+<!-- <van-field hidden label="orders_id" name="orders_id" value="{{ orders_id }}"/>
+<van-field hidden label="orderproducts_idd" name="orders_id" value="{{ orderproducts_idd }}"/> -->
+
         </van-cell-group>
         <view class="action-bar">
             <!-- <view class="reset">

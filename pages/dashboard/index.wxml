@@ -2,9 +2,11 @@
 <view hidden="{{ _ready }}">
     <template is="page-loading" />
 </view>
+
+<!-- 恒拓服饰的看板 -->
+<block wx:if="{{ helper.authCheck('bpm.dashboard', _ruleList) }}">
+<!-- <block > -->
 <block wx:if="{{ _ready }}">
-
-
     <view class="container">
         <view class="title">数据看板</view>
         <view class="achieve">
@@ -40,8 +42,6 @@
         </view>
     </view>
     <!-- 新的按钮组 -->
-
-
     <view class="mytool">
         <view class="item1">
             <van-button type="default" bind:click="showproductlist" icon="contact"  block>产品管理</van-button>
@@ -50,7 +50,7 @@
             <van-button type="default" icon="replay" bind:tap="logout" block>订单查询</van-button>
         </view>
     </view>
-
+</block>
 
 
 
@@ -79,5 +79,53 @@
         </view>
     </view> -->
 </block>
+
+<!-- 行政管理的看板 -->
+<block wx:if="{{ helper.authCheck('manage.statistics', _ruleList) }}">
+<!-- <block > -->
+<block wx:if="{{ _ready }}">
+    <view class="container">
+        <view class="title">事务提醒</view>
+        <view class="todo">
+            <van-grid border="{{ false }}" clickable>
+                <van-grid-item icon="home-o"  text="上班打卡" bind:click="" dot />
+                <van-grid-item icon="tosend" text="待办事项" bind:click="showmanagetodolist" info="20" />
+                <van-grid-item icon="balance-list-o" bind:click="showfengzhilist" text="加班申请" />
+                <van-grid-item icon="user-o" text="人事申请" bind:click="showchukulist" info="1" />
+            </van-grid>
+        </view>
+    </view>
+    <!-- 新的按钮组 -->
+
+</block>
+
+
+
+    <!-- <view class="container">
+        <view class="ec-order">
+            <view class="ec-order-title">近7天业绩</view>
+            <ec-canvas id="ec-order" canvas-id="canvas-ec-order" ec="{{ ecOrder }}"></ec-canvas>
+        </view>
+        <view class="title">数据总览</view>
+        <view class="global">
+            <view class="visitor">
+                <view class="label">
+                    <van-icon class="icon" name="location-o" />总访问数</view>
+                <view class="count">{{ totalviews }}</view>
+            </view>
+            <view class="order">
+                <view class="label">
+                    <van-icon class="icon" name="apps-o" />总分类数</view>
+                <view class="count">{{ totalcategory }}</view>
+            </view>
+            <view class="sale">
+                <view class="label">
+                    <van-icon class="icon" name="photo-o" />总附件数</view>
+                <view class="count">{{ totalattachment }}</view>
+            </view>
+        </view>
+    </view> -->
+</block>
+
 <!-- wxs -->
 <wxs src="../../utils/helper.wxs" module="helper" />

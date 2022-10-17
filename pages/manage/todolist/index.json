@@ -2,7 +2,7 @@
     "usingComponents": {
         "helper-table-item": "/components/helper/table-item/manage/todolist/list/index"
     },
-    "navigationBarTitleText": "订单管理",
+    "navigationBarTitleText": "任务列表",
     "enablePullDownRefresh": false,
     "disableScroll": true
 }
