@@ -20,7 +20,7 @@
 
 
 
-                    <van-button type="info" plain round hairline size="mini" clickable bind:click="onClickCell" data-data="{{ item }}" data-index1="{{ item.id }}" data-index2="{{ item.orders_id }}" data-index3="{{ 1 }}" >批次管理</van-button>
+                    <van-button type="info" plain round hairline size="mini" clickable bind:click="onClickPiCiBtn" data-data="{{ item }}" data-index="{{ item.id }}" >批次管理</van-button>
 
                     <van-button type="danger" plain round hairline size="mini"  >审核</van-button>
 

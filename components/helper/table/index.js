@@ -13,18 +13,6 @@ VantComponent({
             type:String,
             value:420
         },
-        index1:{
-            type:String,
-            value:0
-        },
-        index2:{
-            type:String,
-            value:0
-        },
-        index3:{
-            type:String,
-            value:0
-        },
         search: {
             type: Boolean,
             value: true
@@ -104,10 +92,7 @@ VantComponent({
                     'filter': JSON.stringify(that.data._filter),
                     'op': JSON.stringify(that.data._op),
                     'search': that.data._search,
-                    'ids':that.data.ids,
-                    'index1': that.data.index1,
-                    'index2': that.data.index2,
-                    'index3': that.data.index3
+                    'ids':that.data.ids
                 }
             ).then(function (res) {
                 if (res) {
@@ -441,7 +426,7 @@ VantComponent({
                 fail: function (res) {
                     // 打开通用add页
                     wx.navigateTo({
-                        url: `/pages/_common/add/index?config=${app.utils.encodeParam(that.data._config)}&index1==${app.utils.encodeParam(that.data.index1)}&index2==${app.utils.encodeParam(that.data.index2)}&index3==${app.utils.encodeParam(that.data.index3)}`,
+                        url: `/pages/_common/add/index?config=${app.utils.encodeParam(that.data._config)}`,
                     })
                 }
             })

@@ -21,6 +21,7 @@
                     <van-icon class="icon" name="cart-o" />总销售额
                 </view>
                 <view class="money">{{ helper.formatMoney(totalprofit / 10000,false) }}万</view>
+
             </view>
             <view class="profit bg-abstract">
                 <view class="label">

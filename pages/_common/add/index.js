@@ -8,8 +8,8 @@ Page({
         tree: {},
         config: {},
         value: {},
-        orders_id:0,
-        orderproducts_idd:0,
+        cust_01:0,
+        cust_02:0,
     },
     onLoad: function (options) {
         const config = app.utils.decodeParam(options.config)
@@ -55,8 +55,8 @@ Page({
         this.setData({
             cdnurl: wx.getStorageSync('config')['upload']['cdnurl'],
             config: config,
-            orders_id:prevpage.options.index2,
-            orderproducts_idd:prevpage.options.index1,
+            cust_01: wx.getStorageSync('cust_01'),
+            cust_02: wx.getStorageSync('cust_02'),
         })
         this.initValidate()
     },

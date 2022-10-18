@@ -21,21 +21,15 @@ VantComponent({
         })
     },
     methods: {
-        // 点击数据行
-        onClickCell(e) {
+        // 点击批次管理按钮
+        onClickPiCiBtn(e) {
             const id = e.currentTarget.dataset.data.id
-            // if (id === wx.getStorageSync('userId')) {
-            //     wx.vantToast('只能查看和编辑你的下级管理员')
-            //     return
-            // }
-            // this.$emit('clickTableCell',{
-            //     row: e.currentTarget.dataset.data,
-            //     index: e.currentTarget.dataset.index
-            // })
+            wx.setStorageSync('cust_01', e.currentTarget.dataset.data.orders_id)
+            wx.setStorageSync('cust_02', e.currentTarget.dataset.data.id)
             wx.navigateTo({
                 // url: `/pages/_common/detail/index?data=${app.utils.encodeParam(e.detail.row)}&config=${app.utils.encodeParam(that.data._config)}`,
                 // url: `/pages/bpm/stage/detail01/index?ids=420&stage=1`,
-                url: `/pages/bpm/stage/detail01/index?ids=${e.currentTarget.dataset.index}&index1=${e.currentTarget.dataset.index1}&index2=${e.currentTarget.dataset.index2}&index3=${e.currentTarget.dataset.index3}`,
+                url: `/pages/bpm/stage/detail01/index?ids=${e.currentTarget.dataset.index}`,
             })
         },
         // 预览图片
