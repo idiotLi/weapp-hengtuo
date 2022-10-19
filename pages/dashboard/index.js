@@ -332,6 +332,11 @@ Page({
           url: '/pages/bpm/stage/list01/index',
         })
     },
+    showfengzhilist() {
+        wx.navigateTo({
+          url: '/pages/bpm/stage02/list/index',
+        })
+    },
     showproductlist() {
         wx.navigateTo({
           url: '/pages/bpm/product/list/index',

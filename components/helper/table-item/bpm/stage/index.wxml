@@ -27,7 +27,7 @@
 
                 </view>
                 <view class="status">
-                    <van-tag type="status-{{ item.status01 }}" size="">{{ config.fieldContent.status01[item.status01] }}</van-tag>
+                    <van-tag type="status-{{ item[config.list.statusField] }}" size="">{{ config.fieldContent[config.list.statusField][item[config.list.statusField]] }}</van-tag>
                 </view>
             </view>
             <view class="table-item-detail">

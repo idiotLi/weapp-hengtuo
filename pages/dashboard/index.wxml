@@ -14,20 +14,20 @@
                 <view class="label">
                     <van-icon class="icon" name="orders-o" />订单总数
                 </view>
-                <view class="count">{{ totalorder }}</view>
+                <view class="count">{{ dotdata.order.totalsum }}</view>
             </view>
             <view class="sale bg-abstract">
                 <view class="label">
                     <van-icon class="icon" name="cart-o" />总销售额
                 </view>
-                <view class="money">{{ helper.formatMoney(totalprofit / 10000,false) }}万</view>
+                <view class="money">{{ helper.formatMoney(dotdata.order.totalmoney / 10000,false) }}万</view>
 
             </view>
             <view class="profit bg-abstract">
                 <view class="label">
                     <van-icon class="icon" name="balance-o" />总件数
                 </view>
-                <view class="count">{{ helper.formatMoney(totalorderamount / 10000,false) }}万</view>
+                <view class="count">{{ helper.formatMoney(dotdata.order.totalpcs / 10000,false) }}万</view>
             </view>
         </view>
     </view>
@@ -36,9 +36,9 @@
         <view class="todo">
             <van-grid border="{{ false }}" clickable>
                 <van-grid-item icon="records" text="订单管理" bind:click="showorderlist" dot />
-                <van-grid-item icon="comment-o" text="印染" bind:click="showyinranlist" info="12" />
-                <van-grid-item icon="balance-list-o" bind:click="showfengzhilist" text="缝制" />
-                <van-grid-item icon="service-o" text="出库" bind:click="showchukulist" info="1" />
+                <van-grid-item icon="comment-o" text="印染" bind:click="showyinranlist" info="{{ dotdata.stage01.totalundo }}" />
+                <van-grid-item icon="balance-list-o" bind:click="showfengzhilist" text="缝制" info="{{ dotdata.stage01.totalundo }}" />
+                <van-grid-item icon="service-o" text="出库" bind:click="showchukulist" info="{{ dotdata.stage01.totalundo }}"  />
             </van-grid>
         </view>
     </view>
