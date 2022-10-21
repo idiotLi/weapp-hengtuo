@@ -21,13 +21,23 @@ VantComponent({
         })
     },
     methods: {
-        // 点击数据行
+        // 点击进度列表按钮
         onClickProducts(e) {
             const id = e.currentTarget.dataset.data.id
             wx.navigateTo({
                 url: `/pages/manage/todolistdetail/index?ids=${e.currentTarget.dataset.index}`,
             })
         },
+
+        // 点击数据行
+        onClickCell(e) {
+            this.$emit('clickTableCell',{
+                row: e.currentTarget.dataset.data,
+                index: e.currentTarget.dataset.index
+            })
+            
+        },
+
         // 预览图片
         onPreview(e) {
             const rows = this.data.rows

@@ -14,7 +14,7 @@
                     <van-tag type="status-{{ item.status }}" size="">{{ config.fieldContent.status[item.status] }}</van-tag>
                 </view>
             </view>
-            <view class="table-item-detail">
+            <view class="table-item-detail" clickable bind:tap="onClickCell" data-data="{{ item }}" data-index="{{ item.id }}">
                 <view class="table-item__row">
                     <view class="table-item__item">
                         <view class="label">部门:</view>
