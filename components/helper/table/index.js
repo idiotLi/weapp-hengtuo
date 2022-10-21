@@ -9,6 +9,7 @@ VantComponent({
     },
     props: {
         source: String,
+        navi: String,
         ids:{
             type:String,
             value:420

@@ -1,7 +1,8 @@
 // pages/bpm/stage01/list01/index.js
 Page({
     data: {
-        source: 'bpm.stage02/index'
+        source: 'bpm.stage02/index',
+        nav:'/pages/bpm/stage02/detail/index'
     },
     onLoad: function (options) {
         
