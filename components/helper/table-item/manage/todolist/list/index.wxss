@@ -30,7 +30,7 @@
 } */
 .table-item-detail {
     margin-top: 8px;
-    font-size: 11px;
+    font-size: 12px;
     display: flex;
     flex-direction: column;
     justify-content: start;

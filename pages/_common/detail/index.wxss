@@ -4,6 +4,7 @@
 .h2w__main {
     margin: 0 !important;
     padding: 0 !important;
+    font-size: 12px !important;
 }
 .cell-value .van-tag {
     margin-right: 4px;
@@ -27,10 +28,10 @@
     width: 50px;
 }
 .van-cell__title {
-    flex: 1;
+    flex: 2 !important;
 }
 .van-cell__value {
-    flex: 2 !important;
+    flex: 5 !important;
     text-align: left !important;
 }
 .action-bar {
@@ -67,4 +68,7 @@
     margin: 0;
     padding-bottom: 44px;
     padding-bottom: calc(env(safe-area-inset-bottom) + 44px);
+}
+.h2w__p {
+    margin: 2rpx 0 2rpx 0 !important;
 }

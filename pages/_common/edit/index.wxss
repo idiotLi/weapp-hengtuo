@@ -53,7 +53,7 @@
 .cell-title-90px {
     min-width: 90px;
     max-width: 90px;
-    font-size: 16px;
+    font-size: 14px;
 }
 .cell-value {
     text-align: left !important;
