@@ -20,13 +20,13 @@
                         <view class="label">部门:</view>
                         <!-- <view class="value">{{ item.departments }}</view> -->
                         <view class="value">
-                            <van-tag custom-class="flag" wx:for="{{ helper.split(',',item.departments) }}" wx:key="index" wx:for-item="group" type="warning" plain round>{{ group }}</van-tag>
+                            <van-tag custom-class="flag" wx:for="{{ helper.split(',',item.departments_text) }}" wx:key="index" wx:for-item="group" type="primary"  round>{{ group }}</van-tag>
                         </view>
                     </view>
                     <view class="table-item__item">
                         <view class="label">相关人员:</view>
                         <!-- <view class="value">{{ item.use_admin_ids }}</view> -->
-                        <van-tag custom-class="flag" wx:for="{{ helper.split(',',item.use_admin_ids) }}" wx:key="index" wx:for-item="group" type="primary" plain round>{{ group }}</van-tag>
+                        <van-tag custom-class="flag" wx:for="{{ helper.split(',',item.use_admin_ids_text) }}" wx:key="index" wx:for-item="group" type="warning"  plain round>{{ group }}</van-tag>
                     </view>
                 </view>
                 <view class="table-item__row">
