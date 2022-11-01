@@ -73,6 +73,14 @@
                         <van-picker columns="{{ config.columns[index] }}" class="picker-{{ index }}" data-index="{{ index }}" show-toolbar bind:confirm="onSelectConfirm" bind:cancel="onCloseActionSheet" />
                     </van-action-sheet>
                 </block>
+                <!-- selectsearch -->
+                <block wx:elif="{{ helper.inArray(item.type,['selectsearch']) }}">
+                    <input name="{{ index }}" value="{{ value[index] }}" hidden />
+                    <van-field label="{{ item.label }}" value="{{ helper.trim(helper.keyValue(config.fieldContent[index])[value[index]]) }}" placeholder="请选择" size="large" data-index="{{ index }}" type="text" cursor-spacing="10" error="{{ validatorError[index] }}" required="{{ config.rules[index].required }}" readonly is-link arrow-direction="down" bind:tap="onTapSelectField" />
+                    <van-action-sheet show="{{ showActionSheet[index] }}" description="请选择{{ item.label }}" close-on-click-overlay bind:close="onCloseActionSheet" z-index="110">
+                        <van-picker columns="{{ config.columns[index] }}" class="picker-{{ index }}" data-index="{{ index }}" show-toolbar bind:confirm="onSelectConfirm" bind:cancel="onCloseActionSheet" />
+                    </van-action-sheet>
+                </block>
                 <!-- selects -->
                 <block wx:elif="{{ helper.inArray(item.type,['selects'])}}">
                     <input name="{{ index }}" value="{{ value[index] }}" hidden />
