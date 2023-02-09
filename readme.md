@@ -5,6 +5,8 @@ GIT 文件夹->右键GIT bash here
 输入：git clone git@github.com:idiotLi/weapp-hengtuo.git
 2. 推送
 GIT/weapp-hengtuo 文件夹->右键GIT bash here
+保存工作区变动：git add *
+保存本地库变动： git commit -m "更新备注"
 关联远程仓库：git remote add origin git@github.com:idiotLi/weapp-hengtuo.git （只需输入一次）
 推送命令：git push -u origin master
 
