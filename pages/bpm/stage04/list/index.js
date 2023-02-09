@@ -1,13 +1,10 @@
 Page({
-
     data: {
-        source: 'manage.todolistdetails/index',
-        ids: ''
+        source: 'bpm.stage04/index',
+        nav:'/pages/bpm/stage04/detail/index'
     },
     onLoad: function (options) {
-        this.setData({
-            ids :options.ids,
-        })
+        
     },
     // 刷新组件数据
     refreshData() {

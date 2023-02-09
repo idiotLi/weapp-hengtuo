@@ -37,8 +37,8 @@
             <van-grid border="{{ false }}" clickable>
                 <van-grid-item icon="records" text="订单管理" bind:click="showorderlist" dot />
                 <van-grid-item icon="comment-o" text="印染" bind:click="showyinranlist" info="{{ dotdata.stage01.totalundo }}" />
-                <van-grid-item icon="balance-list-o" bind:click="showfengzhilist" text="缝制" info="{{ dotdata.stage01.totalundo }}" />
-                <van-grid-item icon="service-o" text="出库" bind:click="showchukulist" info="{{ dotdata.stage01.totalundo }}"  />
+                <van-grid-item icon="balance-list-o" bind:click="showfengzhilist" text="缝制" info="{{ dotdata.stage02.totalundo }}" />
+                <van-grid-item icon="service-o" text="出库" bind:click="showchukulist" info="{{ dotdata.stage04.totalundo }}"  />
             </van-grid>
         </view>
     </view>
@@ -47,9 +47,9 @@
         <view class="item1">
             <van-button type="default" bind:click="showproductlist" icon="contact"  block>产品管理</van-button>
         </view>
-        <view class="item2">
+        <!-- <view class="item2">
             <van-button type="default" icon="replay" bind:tap="logout" block>订单查询</van-button>
-        </view>
+        </view> -->
     </view>
 </block>
 

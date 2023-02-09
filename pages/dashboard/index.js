@@ -337,6 +337,13 @@ Page({
           url: '/pages/bpm/stage02/list/index',
         })
     },
+
+    showchukulist() {
+        wx.navigateTo({
+          url: '/pages/bpm/stage04/list/index',
+        })
+    },
+
     showproductlist() {
         wx.navigateTo({
           url: '/pages/bpm/product/list/index',

@@ -169,6 +169,7 @@
             <input name="{{ orderproducts_idd }}" value="{{ cust_02 }}" hidden /> -->
             <van-field  v-show="false"  name="orders_id" value="{{ cust_01 }}" />
             <van-field  v-show="false"  name="orderproducts_idd" value="{{ cust_02 }}" />
+            
             </view>
 
         </van-cell-group>

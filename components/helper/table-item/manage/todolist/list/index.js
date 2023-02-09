@@ -22,7 +22,7 @@ VantComponent({
     },
     methods: {
         // 点击进度列表按钮
-        onClickProducts(e) {
+        onClickTasklist(e) {
             const id = e.currentTarget.dataset.data.id
             wx.navigateTo({
                 url: `/pages/manage/todolistdetail/index?ids=${e.currentTarget.dataset.index}`,

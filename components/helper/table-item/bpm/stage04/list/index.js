@@ -21,13 +21,17 @@ VantComponent({
         })
     },
     methods: {
-        // 点击数据行
-        onClickProducts(e) {
+        // 点击批次管理按钮
+        onClickPiCiBtn(e) {
             const id = e.currentTarget.dataset.data.id
+            wx.setStorageSync('cust_01', e.currentTarget.dataset.data.orders_id)
+            wx.setStorageSync('cust_02', e.currentTarget.dataset.data.id)
             wx.setStorageSync('cust_11', e.currentTarget.dataset.data.piciaddable)
 
             wx.navigateTo({
-                url: `/pages/bpm/order/detail/index?ids=${e.currentTarget.dataset.index}`,
+                // url: `/pages/_common/detail/index?data=${app.utils.encodeParam(e.detail.row)}&config=${app.utils.encodeParam(that.data._config)}`,
+                // url: `/pages/bpm/stage/detail01/index?ids=420&stage=1`,
+                url: `/pages/bpm/stage04/detail/index?ids=${e.currentTarget.dataset.index}`,
             })
         },
         // 预览图片

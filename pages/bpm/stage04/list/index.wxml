@@ -1,0 +1,3 @@
+<include src="/pages/header.wxml" />
+<helper-table id="table" source="{{ source }}" navi="{{ navi }}" generic:helper-table-item="helper-table-item">
+</helper-table>

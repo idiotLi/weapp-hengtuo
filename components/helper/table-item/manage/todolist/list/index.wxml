@@ -4,7 +4,7 @@
             <view class="table-item__title van-hairline--bottom">
                 <view class="name">任务编号：{{ item.id }}</view>
                 <view class="operate">
-                    <van-button type="primary" plain round hairline size="mini" clickable bind:click="onClickProducts" data-data="{{ item }}" data-index="{{ item.id }}"  >进度列表</van-button>
+                    <van-button type="primary" plain round hairline size="mini" clickable bind:click="onClickTasklist" data-data="{{ item }}" data-index="{{ item.id }}"  >进度列表</van-button>
                     <text> </text>
                     <van-button type="primary" plain round hairline size="mini"  >审核</van-button>
 

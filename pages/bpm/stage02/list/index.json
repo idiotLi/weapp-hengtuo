@@ -1,6 +1,6 @@
 {
     "usingComponents": {
-        "helper-table-item": "/components/helper/table-item/bpm/stage/index"
+        "helper-table-item": "/components/helper/table-item/bpm/stage02/list/index"
     },
     "navigationBarTitleText": "缝制管理",
     "enablePullDownRefresh": false,

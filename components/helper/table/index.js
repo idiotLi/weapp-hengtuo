@@ -61,6 +61,7 @@ VantComponent({
         _search: '',
         _total: 0,
         _lastRefreshTime: 0,
+        cust_11:true,
     },
     mounted() {
         if (!this.data.source) {
@@ -71,7 +72,8 @@ VantComponent({
         }
         this.setData({
             _isIOS: app.globalData.systemInfo.platform === 'ios',
-            _ruleList: wx.getStorageSync('ruleList')
+            _ruleList: wx.getStorageSync('ruleList'),
+            cust_11: wx.getStorageSync('cust_11'),
         })
         this.refreshData = this.refreshData()
         this.refreshData()

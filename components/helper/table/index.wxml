@@ -54,7 +54,7 @@
                     </van-dropdown-menu>
                 </view>
             </view>
-            <block wx:if="{{ helper.authCheck(_config.auth.add.url,_ruleList) }}">
+            <block wx:if="{{ helper.authCheck(_config.auth.add.url,_ruleList) && cust_11 }}">
                 <view class="operate-bar-add">
                     <van-button custom-class="operate-bar-btn" plain type="primary" size="small" icon="plus" bind:click="onAddClick">添加</van-button>
                 </view>

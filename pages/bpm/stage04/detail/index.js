@@ -4,7 +4,7 @@ Page({
     data: {
         // source: 'auth.admin/index'
         // source: 'bpm/stage01'
-        source: 'bpm.stage02details/index',
+        source: 'bpm.stage04details/index',
         ids : ''
         
     },

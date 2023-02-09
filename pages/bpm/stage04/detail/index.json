@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "helper-table-item": "/components/helper/table-item/bpm/stage04/detail/index"
+    },
+    "navigationBarTitleText": "出库-批次管理",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

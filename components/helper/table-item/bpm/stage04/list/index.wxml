@@ -20,7 +20,7 @@
 
 
                     
-                    <van-button type="info" plain round hairline size="mini" clickable bind:click="onClickPiCiBtn" data-data="{{ item }}" data-index="{{ item.id }}"  data-add="{{ item.piciaddable }}">批次管理{{ item.p_nums }}</van-button>
+                    <van-button type="info" plain round hairline size="mini" clickable bind:click="onClickPiCiBtn" data-data="{{ item }}" data-index="{{ item.id }}" >批次管理{{ item.p_nums }}</van-button>
                     
                     <!-- <van-button type="danger" plain round hairline size="mini"  >审核</van-button> -->
 
@@ -79,12 +79,12 @@
                 </view>
                 <view class="table-item__row">
                     <view class="table-item__item">
-                        <view class="label">计划(米数):</view>
-                        <view class="value">{{ item.plan_sum }}</view>
+                        <view class="label">订单出库(件):</view>
+                        <view class="value">{{ item.total_sum1 }}</view>
                     </view>
                     <view class="table-item__item">
-                        <view class="label">产出(米数):</view>
-                        <view class="value">{{ item.fact_sum }}</view>
+                        <view class="label">样品出库(件):</view>
+                        <view class="value">{{ item.total_sum2 }}</view>
                     </view>
                 </view>
             </view>
@@ -92,5 +92,5 @@
     </view>
 </van-cell>
 <!-- wxs -->
-<wxs src="../../../../vant/wxs/utils.wxs" module="utils" />
-<wxs src="../../../../../utils/helper.wxs" module="helper" />
+<wxs src="../../../../../vant/wxs/utils.wxs" module="utils" />
+<wxs src="../../../../../../utils/helper.wxs" module="helper" />

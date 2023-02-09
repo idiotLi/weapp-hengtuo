@@ -1,0 +1,50 @@
+<van-cell border="{{ false }}" custom-class="list-cell"  data-data="{{ item }}" data-index="{{ item.id }}">
+    <view class="table-item">
+        <view class="table-item-main" >
+            <view class="table-item__title van-hairline--bottom">
+                <view class="name">流程供应商{{ item.supplier }}</view>
+                <view class="operate">
+                
+                </view>
+                <view class="status"  >
+                    <van-tag type="status-{{ item.status01 }}" 
+                    size="">{{ config.fieldContent.status01[item.status01] }}</van-tag>
+                </view>
+            </view>
+            <view class="table-item-detail">
+                <view wx:for="{{ config.list.field }}" wx:for-item="field" wx:key="index" wx:if="{{ (!helper.inArray(field,[config.pk,config.list.imageField,config.list.titleField]) || (!config.list.imageField && field === config.pk)) && config.field[field] }}" class="table-item__row">
+                    <view class="table-item__item">
+                        <view class="label">
+                            {{ config.field[field].label }}:
+                        </view>
+                        <!-- select,switch -->
+                        <view wx:if="{{ helper.inArray(config.field[field].type,['select','switch']) }}" class="value">
+                            {{ config.fieldContent[field][item[field]] }}
+                        </view>
+                        <!-- selects -->
+                        <view wx:elif="{{ helper.inArray(config.field[field].type,['selects']) }}" class="value">
+                            <van-tag custom-class="flag" wx:for="{{ helper.split(',',helper.valueToTextArray(item[field],config.fieldContent[field])) }}" wx:key="index" wx:for-item="select" type="warning" plain round>
+                                {{ select }}
+                            </van-tag>
+                        </view>
+                        <!-- datetime -->
+                        <view wx:elif="{{ helper.inArray(config.field[field].type,['datetime']) }}" class="value">
+                            {{ helper.formatDate(item[field],'yyyy-MM-dd') }}
+                        </view>
+                        <!-- editor -->
+                        <view wx:elif="{{ config.field[field].type === 'editor' }}" class="value">
+                            {{ helper.removeHtmlTag(item[field]) }}
+                        </view>
+                        <!-- other -->
+                        <view wx:else class="value van-multi-ellipsis--l3">
+                            {{ item[field] }}
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</van-cell>
+<!-- wxs -->
+<wxs src="../../../../../vant/wxs/utils.wxs" module="utils" />
+<wxs src="../../../../../../utils/helper.wxs" module="helper" />

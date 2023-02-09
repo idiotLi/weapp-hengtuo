@@ -22,12 +22,19 @@ VantComponent({
     },
     methods: {
         // 点击数据行
-        onClickProducts(e) {
+        onClickCell(e) {
             const id = e.currentTarget.dataset.data.id
-            wx.setStorageSync('cust_11', e.currentTarget.dataset.data.piciaddable)
-
+            // if (id === wx.getStorageSync('userId')) {
+            //     wx.vantToast('只能查看和编辑你的下级管理员')
+            //     return
+            // }
+            // this.$emit('clickTableCell',{
+            //     row: e.currentTarget.dataset.data,
+            //     index: e.currentTarget.dataset.index
+            // })
             wx.navigateTo({
-                url: `/pages/bpm/order/detail/index?ids=${e.currentTarget.dataset.index}`,
+                // url: `/pages/_common/detail/index?data=${app.utils.encodeParam(e.detail.row)}&config=${app.utils.encodeParam(that.data._config)}`,
+                url: `/pages/bpm/stage/detail01/index?data=${app.utils.encodeParam(e.detail.row)}`,
             })
         },
         // 预览图片
