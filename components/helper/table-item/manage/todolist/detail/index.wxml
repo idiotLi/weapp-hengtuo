@@ -30,7 +30,7 @@
                     </view>
 
                 </view>
-                <view class="table-item__row" wx:if="{{ item.status == 1 }}" >
+                <view class="table-item__row" wx:if="{{ item.status == 1|3 }}" >
                     <view class="table-item__item">
                         <view class="label">进度:</view>
                         <view class="value">{{ helper.formatDate(item.deadtime,'yyyy-MM-dd') }}</view>
